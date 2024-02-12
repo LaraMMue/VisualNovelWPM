@@ -1,20 +1,73 @@
+html, body {
+  width: 100vw;
+  height: 100vh;
+  margin: 0px;
+  padding: 0px;
+  background-color: black; 
+  overflow: hidden;
+  font-family: Arial, Helvetica, sans-serif;
+
+}
+
 scene {
   width: 1280px;
   height: 720px;
   display: inline-block;
+  position: absolute;
 }
 
+canvas{
+  width: 100%;
+  height: 100%;
+}
+
+
 dialog[type=splash] {
-  margin: 0px;
-  padding: 0px;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgb(0, 0, 0);
-  color: white;
-  border: none;
-  cursor: pointer;
-  text-align: center;
+  background-image: url("Images/Backgrounds/Splash.png");
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100%;
 }
 dialog[type=splash]>img#FudgeStoryLogo {
+  width: 50%;
+}
+
+#FudgeStoryLogo {
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+speech {
+  position: absolute;
+  bottom: 0px;
+  left: 10%;
+  color: white;
+  background: url("Images/Backgrounds/text.png");
+  background-repeat: no-repeat;
+  /*background-color: rgba(57, 16, 24, 0.9); */
   width: 100%;
+  /*height: 13%; */
+  height: 21%;
+}
+
+speech content {
+  position: absolute;
+  width: 70%;
+  margin-left: 70px;
+  margin-top: -20px;
+  font-size: 2vmin;
+}
+
+name {
+  font-size: 3vmin;
+  display: block;
+  width: 150px;
+  height: 66px;
+  /* background-image: url("Images/Backgrounds/name.png"); 
+  background-repeat: no-repeat; */
+  color: white;
+  margin-left: 45px;
+  margin-top: 40px;
+  margin-bottom: 0px;
 }

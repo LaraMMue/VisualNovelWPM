@@ -12,7 +12,11 @@ declare namespace Template {
         soundName: string;
     };
     let location: {
-        backGroundName: {
+        moonStationInterior: {
+            name: string;
+            background: string;
+        };
+        earthFromMoon: {
             name: string;
             background: string;
         };
@@ -21,13 +25,14 @@ declare namespace Template {
         narrator: {
             name: string;
         };
-        protagonist: {
+        mainCharacter: {
             name: string;
         };
-        character1Name: {
+        bob: {
             name: string;
             origin: ƒ.ORIGIN2D;
             pose: {
+                normal: string;
                 angry: string;
                 happy: string;
                 upset: string;
@@ -35,9 +40,12 @@ declare namespace Template {
         };
     };
     let dataForSave: {
-        nameProtagonist: string;
+        nameMC: string;
     };
 }
 declare namespace Template {
     function Scene(): ƒS.SceneReturn;
+}
+declare namespace Template {
+    function firstScene(): ƒS.SceneReturn;
 }
