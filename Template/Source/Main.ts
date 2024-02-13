@@ -16,7 +16,7 @@ namespace Template {
     // SFX
     soundName: "Pfad (relativ) zB Audio/sound.mp3"
 
-    // themes
+    // themes hallo
 
   };
 
