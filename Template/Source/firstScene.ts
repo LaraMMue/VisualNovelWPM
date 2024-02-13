@@ -13,7 +13,7 @@ namespace Template {
       ƒS.Speech.hide();
       await ƒS.Location.show(location.moonStationInterior);
       await ƒS.update(1);
-      //await ƒS.Character.show(characters.Astronaut, characters.Astronaut.pose.normal, ƒS.positions.bottomcenter);
+      await ƒS.Character.show(characters.mainCharacter, characters.mainCharacter.pose.normal, ƒS.positions.bottomcenter);
       await ƒS.Speech.tell(characters.mainCharacter, text.MCtext.T0001);
       await ƒS.Speech.tell(characters.mainCharacter, text.MCtext.T0002);
       dataForSave.nameMC = await ƒS.Speech.getInput();

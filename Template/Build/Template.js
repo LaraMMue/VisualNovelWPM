@@ -14,7 +14,7 @@ var Template;
     Template.sound = {
         // SFX
         soundName: "Pfad (relativ) zB Audio/sound.mp3"
-        // themes
+        // themes hallo
     };
     Template.location = {
         moonStationInterior: {
@@ -28,10 +28,14 @@ var Template;
     };
     Template.characters = {
         narrator: {
-            name: ""
+            name: "???"
         },
         mainCharacter: {
-            name: ""
+            name: "",
+            origin: Template.ƒS.ORIGIN.BOTTOMCENTER,
+            pose: {
+                normal: "Images/Characters/charatest2.png"
+            }
         },
         bob: {
             name: "Bob",
@@ -50,8 +54,8 @@ var Template;
     };
     //Menu shortcuts
     let inGameMenuButtons = {
-        save: "Save",
-        load: "Load",
+        save: "Save", // erstellt eine json save datei, die heruntergeladen werden kann
+        load: "Load", // man kann eine json datei öffnen (die vorher gespeichert wurde), wenn man die öffnet lädt die Szene, bei der man gespeichert hat
         close: "Close" // close the menu
         //credits
     };
@@ -103,7 +107,9 @@ var Template;
         gameMenu.close();
         // SCENE HIERARCHY
         let scenes = [
-            { scene: Template.firstScene, name: "First Scene" }
+            // Tutorial hier hin mit id
+            { id: "tutorial", scene: Template.tutorial, name: "Tutorial" },
+            { id: "firstScene", scene: Template.firstScene, name: "First Scene" }
         ];
         let uiElement = document.querySelector("[type=interface]");
         Template.dataForSave = Template.ƒS.Progress.setData(Template.dataForSave, uiElement);
@@ -120,6 +126,24 @@ var Template;
 })(Template || (Template = {}));
 var Template;
 (function (Template) {
+    async function tutorial() {
+        let dialogue = {
+            iChooseTutorial: "Tutorial",
+            iSkipTutorial: "Skip to Story"
+        };
+        let dialogueElement = await Template.ƒS.Menu.getInput(dialogue, "choicesCSSclass");
+        switch (dialogueElement) {
+            case dialogue.iChooseTutorial:
+                console.log("Tutorial chosen");
+                break;
+            case dialogue.iSkipTutorial:
+                return "firstScene"; // -> Ruft erste Szene auf (hoffentlich...)
+        }
+    }
+    Template.tutorial = tutorial;
+})(Template || (Template = {}));
+var Template;
+(function (Template) {
     async function firstScene() {
         console.log("First Scene starting");
         let text = {
@@ -132,7 +156,7 @@ var Template;
         Template.ƒS.Speech.hide();
         await Template.ƒS.Location.show(Template.location.moonStationInterior);
         await Template.ƒS.update(1);
-        //await ƒS.Character.show(characters.Astronaut, characters.Astronaut.pose.normal, ƒS.positions.bottomcenter);
+        await Template.ƒS.Character.show(Template.characters.mainCharacter, Template.characters.mainCharacter.pose.normal, Template.ƒS.positions.bottomcenter);
         await Template.ƒS.Speech.tell(Template.characters.mainCharacter, text.MCtext.T0001);
         await Template.ƒS.Speech.tell(Template.characters.mainCharacter, text.MCtext.T0002);
         Template.dataForSave.nameMC = await Template.ƒS.Speech.getInput();

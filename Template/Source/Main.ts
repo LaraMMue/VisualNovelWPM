@@ -33,10 +33,15 @@ namespace Template {
 
   export let characters = {
     narrator: {
-      name: ""
+      name: "???"
     },
     mainCharacter: {
-      name: ""
+      name: "",
+      origin: ƒS.ORIGIN.BOTTOMCENTER,
+      pose: {
+        normal: "Images/Characters/charatest2.png"
+
+      }
     },
     bob: {
       name: "Bob",
@@ -121,7 +126,9 @@ namespace Template {
     
     // SCENE HIERARCHY
     let scenes: ƒS.Scenes = [
-      { scene: firstScene, name: "First Scene" }
+      // Tutorial hier hin mit id
+      { id: "tutorial", scene: tutorial, name: "Tutorial" },
+      { id: "firstScene", scene: firstScene, name: "First Scene" }
     ];
 
     let uiElement: HTMLElement = document.querySelector("[type=interface]");

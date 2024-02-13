@@ -27,6 +27,10 @@ declare namespace Template {
         };
         mainCharacter: {
             name: string;
+            origin: ƒ.ORIGIN2D;
+            pose: {
+                normal: string;
+            };
         };
         bob: {
             name: string;
@@ -45,6 +49,9 @@ declare namespace Template {
 }
 declare namespace Template {
     function Scene(): ƒS.SceneReturn;
+}
+declare namespace Template {
+    function tutorial(): ƒS.SceneReturn;
 }
 declare namespace Template {
     function firstScene(): ƒS.SceneReturn;
