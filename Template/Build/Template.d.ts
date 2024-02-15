@@ -66,9 +66,21 @@ declare namespace Template {
             };
         };
     };
+    let items: {
+        energyCore: {
+            name: string;
+            description: string;
+            image: string;
+            static: boolean;
+        };
+    };
     let dataForSave: {
         nameMC: string;
     };
+    let gameMenu: ƒS.Menu;
+    function increaseSound(): void;
+    function decreaseVolume(): void;
+    function displayCredits(): void;
 }
 declare namespace Template {
     function Scene(): ƒS.SceneReturn;

@@ -16,7 +16,7 @@ namespace Template {
     // SFX
     soundName: "Pfad (relativ) zB Audio/sound.mp3"
 
-    // themes hallo
+    // themes
 
   };
 
@@ -83,6 +83,15 @@ namespace Template {
     }
   };
 
+  export let items = {
+    energyCore: {
+      name: "Strange Energy Core",
+      description: "An electric device that looks like a robot energy core",
+      image: "Images/Items/itemTest.png",
+      static: false
+    }
+  };
+
   //  GAME PROGRESS DATA SAVE
   export let dataForSave = {
     nameMC: ""
@@ -93,13 +102,39 @@ namespace Template {
   let inGameMenuButtons = {
     save: "Save", // erstellt eine json save datei, die heruntergeladen werden kann
     load: "Load", // man kann eine json datei öffnen (die vorher gespeichert wurde), wenn man die öffnet lädt die Szene, bei der man gespeichert hat
-    close: "Close" // close the menu
+    close: "Close", // close the menu
+    increaseVolume: "volume +",
+    decreaseVolume: "volume -",
+    inventory: "Inventory",
+    credits: "Credits"
     //credits
   };
 
-  let gameMenu: ƒS.Menu;
+  export let gameMenu: ƒS.Menu;
 
   let menuIsOpen: boolean = false;
+
+  let volume: number = 4.0;
+
+  export function increaseSound(): void {
+    if (volume >= 10) return;
+    volume += 1;
+    ƒS.Sound.setMasterVolume(volume);
+  }
+
+  export function decreaseVolume(): void {
+    if (volume <=0) return;
+    volume -= 1;
+    ƒS.Sound.setMasterVolume(volume);
+  }
+
+  export function displayCredits(): void {
+    ƒS.Text.print(
+      "Author: Lara Marie Müller " + 
+      "<br/>" +
+      "Visual Novel WiSe 2023/24" 
+    );
+  }
 
   async function buttonFunctionalities(_option: string): Promise<void> {
     console.log(_option);
@@ -114,8 +149,25 @@ namespace Template {
         gameMenu.close();
         menuIsOpen = false;
         break;
-      // credits
-    }
+      case inGameMenuButtons.inventory:
+        await ƒS.Inventory.open();
+        break;
+      case inGameMenuButtons.increaseVolume:
+        increaseSound();
+        console.log("increased Volume to " + volume);
+        
+        break;
+      case inGameMenuButtons.decreaseVolume:
+        decreaseVolume();
+        console.log("decreased Volume to " + volume);
+        
+        break;
+      case inGameMenuButtons.credits:
+        displayCredits();
+        console.log("Opened Credits");
+        
+        break;
+    } 
     
   }
 
@@ -154,8 +206,7 @@ namespace Template {
     
     // SCENE HIERARCHY
     let scenes: ƒS.Scenes = [
-      // Tutorial hier hin mit id
-      { id: "tutorial", scene: tutorial, name: "Tutorial" },
+      { id: "tutorial", scene: tutorial, name: "Tutorial" }, //id zum aufrufen der Szenen
       { id: "firstScene", scene: firstScene, name: "First Scene" },
       { id: "GameOver1", scene: gameOver1, name: "Game Over 1"},
       { id: "Scene2", scene: Scene2, name: "Second Scene"}

@@ -14,7 +14,7 @@ var Template;
     Template.sound = {
         // SFX
         soundName: "Pfad (relativ) zB Audio/sound.mp3"
-        // themes hallo
+        // themes
     };
     Template.location = {
         moonStationInterior: {
@@ -71,6 +71,14 @@ var Template;
             }
         }
     };
+    Template.items = {
+        energyCore: {
+            name: "Strange Energy Core",
+            description: "An electric device that looks like a robot energy core",
+            image: "Images/Items/itemTest.png",
+            static: false
+        }
+    };
     //  GAME PROGRESS DATA SAVE
     Template.dataForSave = {
         nameMC: ""
@@ -79,11 +87,35 @@ var Template;
     let inGameMenuButtons = {
         save: "Save", // erstellt eine json save datei, die heruntergeladen werden kann
         load: "Load", // man kann eine json datei öffnen (die vorher gespeichert wurde), wenn man die öffnet lädt die Szene, bei der man gespeichert hat
-        close: "Close" // close the menu
+        close: "Close", // close the menu
+        increaseVolume: "volume +",
+        decreaseVolume: "volume -",
+        inventory: "Inventory",
+        credits: "Credits"
         //credits
     };
-    let gameMenu;
     let menuIsOpen = false;
+    let volume = 4.0;
+    function increaseSound() {
+        if (volume >= 10)
+            return;
+        volume += 1;
+        Template.ƒS.Sound.setMasterVolume(volume);
+    }
+    Template.increaseSound = increaseSound;
+    function decreaseVolume() {
+        if (volume <= 0)
+            return;
+        volume -= 1;
+        Template.ƒS.Sound.setMasterVolume(volume);
+    }
+    Template.decreaseVolume = decreaseVolume;
+    function displayCredits() {
+        Template.ƒS.Text.print("Author: Lara Marie Müller " +
+            "<br/>" +
+            "Visual Novel WiSe 2023/24");
+    }
+    Template.displayCredits = displayCredits;
     async function buttonFunctionalities(_option) {
         console.log(_option);
         switch (_option) {
@@ -94,10 +126,24 @@ var Template;
                 await Template.ƒS.Progress.load();
                 break;
             case inGameMenuButtons.close:
-                gameMenu.close();
+                Template.gameMenu.close();
                 menuIsOpen = false;
                 break;
-            // credits
+            case inGameMenuButtons.inventory:
+                await Template.ƒS.Inventory.open();
+                break;
+            case inGameMenuButtons.increaseVolume:
+                increaseSound();
+                console.log("increased Volume to " + volume);
+                break;
+            case inGameMenuButtons.decreaseVolume:
+                decreaseVolume();
+                console.log("decreased Volume to " + volume);
+                break;
+            case inGameMenuButtons.credits:
+                displayCredits();
+                console.log("Opened Credits");
+                break;
         }
     }
     document.addEventListener("keydown", handleKeyPress);
@@ -114,24 +160,23 @@ var Template;
             case Template.ƒ.KEYBOARD_CODE.M:
                 if (menuIsOpen) {
                     console.log("Close");
-                    gameMenu.close();
+                    Template.gameMenu.close();
                     menuIsOpen = false;
                 }
                 else {
                     console.log("Open");
-                    gameMenu.open();
+                    Template.gameMenu.open();
                     menuIsOpen = true;
                 }
         }
     }
     window.addEventListener("load", start);
     function start(_event) {
-        gameMenu = Template.ƒS.Menu.create(inGameMenuButtons, buttonFunctionalities, "gameMenuCSSclass"); // optionale CSS Klasse benutzen um Menü zu gestalten
-        gameMenu.close();
+        Template.gameMenu = Template.ƒS.Menu.create(inGameMenuButtons, buttonFunctionalities, "gameMenuCSSclass"); // optionale CSS Klasse benutzen um Menü zu gestalten
+        Template.gameMenu.close();
         // SCENE HIERARCHY
         let scenes = [
-            // Tutorial hier hin mit id
-            { id: "tutorial", scene: Template.tutorial, name: "Tutorial" },
+            { id: "tutorial", scene: Template.tutorial, name: "Tutorial" }, //id zum aufrufen der Szenen
             { id: "firstScene", scene: Template.firstScene, name: "First Scene" },
             { id: "GameOver1", scene: Template.gameOver1, name: "Game Over 1" },
             { id: "Scene2", scene: Template.Scene2, name: "Second Scene" }
@@ -155,7 +200,24 @@ var Template;
         console.log("Scene 2 starting");
         await Template.ƒS.Location.show(Template.location.moonStationInterior);
         await Template.ƒS.update(0.5);
+        await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "Let's just keep looking around."); // hier noch kurz weiter Text?
+        await Template.ƒS.Location.show(Template.location.blackBackground);
+        await Template.ƒS.update(0.5);
         await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "Oh what's this? Looks like a robot of some sorts.");
+        let lookCloser = {
+            interactLookCloser: "Look closer at the robot"
+        };
+        let lookCloserButton = await Template.ƒS.Menu.getInput(lookCloser, "choicesCSSclass");
+        let clickedLookCloserButton;
+        if (clickedLookCloserButton) {
+            delete lookCloser.interactLookCloser;
+        }
+        if (lookCloserButton) {
+            await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "Doesn't seem to work... Maybe it's missing a part?");
+            Template.ƒS.Inventory.add(Template.items.energyCore);
+            await Template.ƒS.Inventory.open();
+            await Template.ƒS.update();
+        }
     }
     Template.Scene2 = Scene2;
 })(Template || (Template = {}));
@@ -217,11 +279,11 @@ var Template;
         }
         if (lookAroundButton) {
             await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "Oh, there's a mirror!");
-            await Template.ƒS.Location.show(Template.location.earthFromMoon);
+            await Template.ƒS.Location.show(Template.location.earthFromMoon); // change BG!!!
             await Template.ƒS.update(1.5);
             await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "Woah I look like an astronaut! Why am I wearing this stuff? ");
             let takeOffHelmet = {
-                interactTakeOffHelmet: "Take helmet off"
+                interactTakeOffHelmet: "Try to take helmet off"
             };
             let takeOffHelmetButton = await Template.ƒS.Menu.getInput(takeOffHelmet, "choicesCSSclass");
             let clickedTakeOffHelmetButton;
@@ -251,7 +313,6 @@ var Template;
                     case helmetChoices.leaveOn:
                         // continue path here
                         await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "Hmm... maybe I shouldn't risk it.");
-                        await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "Let's just keep looking around.");
                         return "Scene2";
                 }
             }
@@ -306,10 +367,11 @@ var Template;
 (function (Template) {
     async function gameOver1() {
         console.log("Reached Game Over 1");
-        await Template.ƒS.Location.show(Template.location.blackBackground);
+        await Template.ƒS.Location.show(Template.location.blackBackground); //design Game Over Screen
         await Template.ƒS.update(0.5);
         await Template.ƒS.Speech.tell(Template.characters.narrator, "Is this the end?...");
         return "firstScene";
+        // save death for later?
     }
     Template.gameOver1 = gameOver1;
 })(Template || (Template = {}));

@@ -26,14 +26,15 @@ namespace Template {
         delete lookAround.interactLookAround;
       }
 
+
       if (lookAroundButton) {
         await ƒS.Speech.tell(characters.mainCharacter, "Oh, there's a mirror!");
-        await ƒS.Location.show(location.earthFromMoon);
+        await ƒS.Location.show(location.earthFromMoon); // change BG!!!
         await ƒS.update(1.5);
         await ƒS.Speech.tell(characters.mainCharacter, "Woah I look like an astronaut! Why am I wearing this stuff? ");
 
         let takeOffHelmet = {
-          interactTakeOffHelmet: "Take helmet off"
+          interactTakeOffHelmet: "Try to take helmet off"
         };
 
         let takeOffHelmetButton = await ƒS.Menu.getInput(takeOffHelmet, "choicesCSSclass");
@@ -71,7 +72,6 @@ namespace Template {
             case helmetChoices.leaveOn:
                 // continue path here
                 await ƒS.Speech.tell(characters.mainCharacter, "Hmm... maybe I shouldn't risk it.");
-                await ƒS.Speech.tell(characters.mainCharacter, "Let's just keep looking around.");
                 return "Scene2"
             
           }

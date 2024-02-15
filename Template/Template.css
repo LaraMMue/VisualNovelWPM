@@ -54,21 +54,22 @@ speech {
 speech content {
   position: absolute;
   width: 70%;
-  margin-left: 70px;
+  margin-left: 60px;
   margin-top: -20px;
   font-size: 2vmin;
   opacity: 1;
 }
 
 name {
-  font-size: 3vmin;
+  font-size: 1.9vmin;
   display: block;
+  text-align: center;
   width: 150px;
   height: 66px;
   /* background-image: url("Images/Backgrounds/name.png"); 
   background-repeat: no-repeat; */
   color: white;
-  margin-left: 45px;
-  margin-top: 40px;
+  margin-left: 20px;
+  margin-top: 45px;
   margin-bottom: 0px;
 }
