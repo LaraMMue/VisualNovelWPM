@@ -20,9 +20,16 @@ declare namespace Template {
             name: string;
             background: string;
         };
+        blackBackground: {
+            name: string;
+            background: string;
+        };
     };
     let characters: {
         narrator: {
+            name: string;
+        };
+        inGameNarrator: {
             name: string;
         };
         mainCharacter: {
@@ -31,6 +38,9 @@ declare namespace Template {
             pose: {
                 normal: string;
             };
+        };
+        helmetVoice: {
+            name: string;
         };
         companion: {
             name: string;
@@ -64,8 +74,14 @@ declare namespace Template {
     function Scene(): ƒS.SceneReturn;
 }
 declare namespace Template {
+    function Scene2(): ƒS.SceneReturn;
+}
+declare namespace Template {
     function tutorial(): ƒS.SceneReturn;
 }
 declare namespace Template {
     function firstScene(): ƒS.SceneReturn;
+}
+declare namespace Template {
+    function gameOver1(): ƒS.SceneReturn;
 }

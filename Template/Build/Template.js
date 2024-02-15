@@ -24,11 +24,18 @@ var Template;
         earthFromMoon: {
             name: "Earth from the Moon",
             background: "Images/Backgrounds/earthFromMoon.png"
+        },
+        blackBackground: {
+            name: "Black Background",
+            background: "Images/Backgrounds/blackBackground.png"
         }
     };
     Template.characters = {
         narrator: {
             name: "???"
+        },
+        inGameNarrator: {
+            name: "Narrator"
         },
         mainCharacter: {
             name: "",
@@ -36,6 +43,9 @@ var Template;
             pose: {
                 normal: "Images/Characters/charatest2.png"
             }
+        },
+        helmetVoice: {
+            name: "Voice in Helmet",
         },
         companion: {
             name: "Buddy",
@@ -122,7 +132,9 @@ var Template;
         let scenes = [
             // Tutorial hier hin mit id
             { id: "tutorial", scene: Template.tutorial, name: "Tutorial" },
-            { id: "firstScene", scene: Template.firstScene, name: "First Scene" }
+            { id: "firstScene", scene: Template.firstScene, name: "First Scene" },
+            { id: "GameOver1", scene: Template.gameOver1, name: "Game Over 1" },
+            { id: "Scene2", scene: Template.Scene2, name: "Second Scene" }
         ];
         let uiElement = document.querySelector("[type=interface]");
         Template.dataForSave = Template.ƒS.Progress.setData(Template.dataForSave, uiElement);
@@ -136,6 +148,16 @@ var Template;
         console.log("FudgeStory Template Scene starting");
     }
     Template.Scene = Scene;
+})(Template || (Template = {}));
+var Template;
+(function (Template) {
+    async function Scene2() {
+        console.log("Scene 2 starting");
+        await Template.ƒS.Location.show(Template.location.moonStationInterior);
+        await Template.ƒS.update(0.5);
+        await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "Oh what's this? Looks like a robot of some sorts.");
+    }
+    Template.Scene2 = Scene2;
 })(Template || (Template = {}));
 var Template;
 (function (Template) {
@@ -174,55 +196,121 @@ var Template;
 (function (Template) {
     async function firstScene() {
         console.log("First Scene starting");
-        let text = {
-            MCtext: {
-                T0001: "''mhm.. where… am I ?''",
-                T0002: "''No wait... WHO even am I???",
-                T0003: "Anyway, what is this place?"
-            }
-        };
         Template.ƒS.Speech.hide();
-        await Template.ƒS.Location.show(Template.location.moonStationInterior);
-        await Template.ƒS.update(1);
-        await Template.ƒS.Character.show(Template.characters.mainCharacter, Template.characters.mainCharacter.pose.normal, Template.ƒS.positions.bottomcenter);
+        //await ƒS.Character.show(characters.mainCharacter, characters.mainCharacter.pose.normal, ƒS.positions.bottomcenter);
         //await ƒS.Character.show(characters.companion, characters.companion.pose.happy, ƒS.positions.bottomcenter);
-        await Template.ƒS.Speech.tell(Template.characters.mainCharacter, text.MCtext.T0001);
-        await Template.ƒS.Speech.tell(Template.characters.mainCharacter, text.MCtext.T0002);
-        Template.dataForSave.nameMC = await Template.ƒS.Speech.getInput();
-        Template.characters.mainCharacter.name = Template.dataForSave.nameMC;
-        await Template.ƒS.Speech.tell(Template.characters.mainCharacter, Template.characters.mainCharacter.name + " ... was that really my name?");
+        await Template.ƒS.Location.show(Template.location.blackBackground);
         await Template.ƒS.update(0.5);
-        let dialogue = {
-            iSayYes: "Yes",
-            iSayMaybe: "Maybe",
-            iSayNo: "No"
+        await Template.ƒS.Speech.tell(Template.characters.inGameNarrator, "You wake up. Everything around you is dark.");
+        await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "Owww, my head...");
+        await Template.ƒS.Speech.tell(Template.characters.inGameNarrator, "You can feel the cold ground beneath you. As you try to get up, the light suddenly turns on.");
+        await Template.ƒS.Location.show(Template.location.moonStationInterior);
+        await Template.ƒS.update(0.5);
+        await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "Ah, it's so bright!... What is this place?");
+        let lookAround = {
+            interactLookAround: "Look around the place"
         };
-        let dialogueElement = await Template.ƒS.Menu.getInput(dialogue, "choicesCSSclass");
-        let pickedYes;
+        let lookAroundButton = await Template.ƒS.Menu.getInput(lookAround, "choicesCSSclass");
+        let clickedLookAroundButton;
+        if (clickedLookAroundButton) {
+            delete lookAround.interactLookAround;
+        }
+        if (lookAroundButton) {
+            await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "Oh, there's a mirror!");
+            await Template.ƒS.Location.show(Template.location.earthFromMoon);
+            await Template.ƒS.update(1.5);
+            await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "Woah I look like an astronaut! Why am I wearing this stuff? ");
+            let takeOffHelmet = {
+                interactTakeOffHelmet: "Take helmet off"
+            };
+            let takeOffHelmetButton = await Template.ƒS.Menu.getInput(takeOffHelmet, "choicesCSSclass");
+            let clickedTakeOffHelmetButton;
+            if (clickedTakeOffHelmetButton) {
+                delete takeOffHelmet.interactTakeOffHelmet;
+            }
+            if (takeOffHelmetButton) {
+                await Template.ƒS.Speech.tell(Template.characters.helmetVoice, "WARNING! HAZARDOUS ENVIRONMENT. DO NOT TAKE OFF YOUR HELMET!");
+                await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "Damn that scared me. So don't take it off? But it's so weird, I can't seem to remember what my face looks like...");
+                await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "Surely taking it off for just a moment won't be that bad, right?");
+                await Template.ƒS.Speech.tell(Template.characters.helmetVoice, "WARNING! HAZARDOUS ENVIRONMENT. DO NOT TAKE OFF YOUR HELMET!");
+                let helmetChoices = {
+                    takeOff: "Take helmet off",
+                    leaveOn: "Leave helmet on"
+                };
+                let helmetChoiceButtons = await Template.ƒS.Menu.getInput(helmetChoices, "choicesCSSclass");
+                let madeChoice;
+                //let pickedNo: boolean;
+                //let pickedBla: boolean;
+                if (madeChoice) {
+                    delete helmetChoices.takeOff;
+                }
+                switch (helmetChoiceButtons) {
+                    case helmetChoices.takeOff:
+                        console.log("go to game over 1");
+                        return "GameOver1";
+                    case helmetChoices.leaveOn:
+                        // continue path here
+                        await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "Hmm... maybe I shouldn't risk it.");
+                        await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "Let's just keep looking around.");
+                        return "Scene2";
+                }
+            }
+            ;
+        }
+        /*dataForSave.nameMC = await ƒS.Speech.getInput();
+        characters.mainCharacter.name = dataForSave.nameMC;
+        await ƒS.Speech.tell(characters.mainCharacter, characters.mainCharacter.name + " ... was that really my name?");
+  
+        await ƒS.update(0.5);
+  
+  
+  
+  
+        let dialogue = {
+          iSayYes: "Yes",
+          iSayMaybe: "Maybe",
+          iSayNo: "No"
+        };
+  
+        let dialogueElement = await ƒS.Menu.getInput(dialogue, "choicesCSSclass");
+  
+        let pickedYes: boolean;
         //let pickedNo: boolean;
         //let pickedBla: boolean;
+  
         if (pickedYes) {
-            delete dialogue.iSayYes;
+          delete dialogue.iSayYes;
         }
+  
         switch (dialogueElement) {
-            case dialogue.iSayYes:
-                await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "Yes, I'm sure that was my name! I think...");
-                // continue path here
-                console.log("test");
-                break; // mit break geht es nach der Entscheidung direkt raus, ansonsten würde es durch alle durchgehen
-            case dialogue.iSayNo:
-                // continue path here
-                await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "No, that's definitely wrong... But no matter how hard I try, I can't seem to remember any other name. Guess I'll keep this one for now.");
-                //await ƒS.Speech.tell(characters.mainCharacter, text.MCtext.T0002); // oder anstatt text.etc direkt Text schreiben so: "der Text"
-                break;
-            case dialogue.iSayMaybe:
-                await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "Hmm... maybe it was?... I'm not sure...");
-                // continue path here
-                break;
-        }
+          case dialogue.iSayYes:
+              await ƒS.Speech.tell(characters.mainCharacter, "Yes, I'm sure that was my name! I think...");
+              // continue path here
+              console.log("test");
+              break; // mit break geht es nach der Entscheidung direkt raus, ansonsten würde es durch alle durchgehen
+          case dialogue.iSayNo:
+              // continue path here
+              await ƒS.Speech.tell(characters.mainCharacter, "No, that's definitely wrong... But no matter how hard I try, I can't seem to remember any other name. Guess I'll keep this one for now.");
+              //await ƒS.Speech.tell(characters.mainCharacter, text.MCtext.T0002); // oder anstatt text.etc direkt Text schreiben so: "der Text"
+              break;
+          case dialogue.iSayMaybe:
+              await ƒS.Speech.tell(characters.mainCharacter, "Hmm... maybe it was?... I'm not sure...");
+              // continue path here
+              break;
+        } */
         await Template.ƒS.update(1);
-        await Template.ƒS.Speech.tell(Template.characters.mainCharacter, text.MCtext.T0003);
     }
     Template.firstScene = firstScene;
+})(Template || (Template = {}));
+var Template;
+(function (Template) {
+    async function gameOver1() {
+        console.log("Reached Game Over 1");
+        await Template.ƒS.Location.show(Template.location.blackBackground);
+        await Template.ƒS.update(0.5);
+        await Template.ƒS.Speech.tell(Template.characters.narrator, "Is this the end?...");
+        return "firstScene";
+    }
+    Template.gameOver1 = gameOver1;
 })(Template || (Template = {}));
 //# sourceMappingURL=Template.js.map

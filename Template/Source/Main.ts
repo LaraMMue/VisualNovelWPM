@@ -28,6 +28,11 @@ namespace Template {
     earthFromMoon: {
       name: "Earth from the Moon",
       background: "Images/Backgrounds/earthFromMoon.png"
+    },
+
+    blackBackground: {
+      name: "Black Background",
+      background: "Images/Backgrounds/blackBackground.png"
     }
   };
 
@@ -35,6 +40,11 @@ namespace Template {
     narrator: {
       name: "???"
     },
+
+    inGameNarrator: {
+      name: "Narrator"
+    },
+
     mainCharacter: {
       name: "",
       origin: ƒS.ORIGIN.BOTTOMCENTER,
@@ -42,6 +52,10 @@ namespace Template {
         normal: "Images/Characters/charatest2.png"
 
       }
+    },
+
+    helmetVoice: {
+      name: "Voice in Helmet",
     },
 
     companion: {
@@ -142,7 +156,9 @@ namespace Template {
     let scenes: ƒS.Scenes = [
       // Tutorial hier hin mit id
       { id: "tutorial", scene: tutorial, name: "Tutorial" },
-      { id: "firstScene", scene: firstScene, name: "First Scene" }
+      { id: "firstScene", scene: firstScene, name: "First Scene" },
+      { id: "GameOver1", scene: gameOver1, name: "Game Over 1"},
+      { id: "Scene2", scene: Scene2, name: "Second Scene"}
     ];
 
     let uiElement: HTMLElement = document.querySelector("[type=interface]");
