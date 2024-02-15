@@ -37,6 +37,19 @@ var Template;
                 normal: "Images/Characters/charatest2.png"
             }
         },
+        companion: {
+            name: "Buddy",
+            origin: Template.ƒS.ORIGIN.BOTTOMCENTER,
+            pose: {
+                normal: "Images/Characters/robot_normal.png", //TO-DO!!!: alle Bilder auf richtige Größe zuschneiden!!!
+                happy: "Images/Characters/robot_happy.png",
+                sad: "Images/Characters/robot_sad.png",
+                scared: "Images/Characters/robot_scared.png",
+                angry: "Images/Characters/robot_angry.png",
+                annoyed: "Images/Characters/robot_annoyed.png",
+                sleep: "Images/Characters/robot_closed.png"
+            }
+        },
         bob: {
             name: "Bob",
             origin: Template.ƒS.ORIGIN.BOTTOMCENTER,
@@ -172,6 +185,7 @@ var Template;
         await Template.ƒS.Location.show(Template.location.moonStationInterior);
         await Template.ƒS.update(1);
         await Template.ƒS.Character.show(Template.characters.mainCharacter, Template.characters.mainCharacter.pose.normal, Template.ƒS.positions.bottomcenter);
+        //await ƒS.Character.show(characters.companion, characters.companion.pose.happy, ƒS.positions.bottomcenter);
         await Template.ƒS.Speech.tell(Template.characters.mainCharacter, text.MCtext.T0001);
         await Template.ƒS.Speech.tell(Template.characters.mainCharacter, text.MCtext.T0002);
         Template.dataForSave.nameMC = await Template.ƒS.Speech.getInput();

@@ -43,6 +43,20 @@ namespace Template {
 
       }
     },
+
+    companion: {
+      name: "Buddy",
+      origin: ƒS.ORIGIN.BOTTOMCENTER,
+      pose: {
+        normal: "Images/Characters/robot_normal.png", //TO-DO!!!: alle Bilder auf richtige Größe zuschneiden!!!
+        happy: "Images/Characters/robot_happy.png",
+        sad: "Images/Characters/robot_sad.png",
+        scared: "Images/Characters/robot_scared.png",
+        angry: "Images/Characters/robot_angry.png",
+        annoyed: "Images/Characters/robot_annoyed.png",
+        sleep: "Images/Characters/robot_closed.png"
+      }
+    },
     bob: {
       name: "Bob",
       origin: ƒS.ORIGIN.BOTTOMCENTER,

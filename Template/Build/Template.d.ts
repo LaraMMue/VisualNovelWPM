@@ -32,6 +32,19 @@ declare namespace Template {
                 normal: string;
             };
         };
+        companion: {
+            name: string;
+            origin: ƒ.ORIGIN2D;
+            pose: {
+                normal: string;
+                happy: string;
+                sad: string;
+                scared: string;
+                angry: string;
+                annoyed: string;
+                sleep: string;
+            };
+        };
         bob: {
             name: string;
             origin: ƒ.ORIGIN2D;
