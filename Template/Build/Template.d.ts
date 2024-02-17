@@ -76,6 +76,7 @@ declare namespace Template {
     };
     let dataForSave: {
         nameMC: string;
+        takenOffHelmet: boolean;
     };
     let gameMenu: ƒS.Menu;
     function increaseSound(): void;

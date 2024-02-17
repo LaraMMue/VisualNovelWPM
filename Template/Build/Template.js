@@ -74,14 +74,15 @@ var Template;
     Template.items = {
         energyCore: {
             name: "Strange Energy Core",
-            description: "An electric device that looks like a robot energy core",
+            description: "An electric device used to power certain robots",
             image: "Images/Items/itemTest.png",
             static: false
         }
     };
     //  GAME PROGRESS DATA SAVE
     Template.dataForSave = {
-        nameMC: ""
+        nameMC: "",
+        takenOffHelmet: false
     };
     //Menu shortcuts
     let inGameMenuButtons = {
@@ -200,24 +201,50 @@ var Template;
         console.log("Scene 2 starting");
         await Template.ƒS.Location.show(Template.location.moonStationInterior);
         await Template.ƒS.update(0.5);
-        await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "Let's just keep looking around."); // hier noch kurz weiter Text?
-        await Template.ƒS.Location.show(Template.location.blackBackground);
-        await Template.ƒS.update(0.5);
-        await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "Oh what's this? Looks like a robot of some sorts.");
-        let lookCloser = {
-            interactLookCloser: "Look closer at the robot"
+        await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "Let's just keep looking around.");
+        await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "Maybe I can find some more information about this place...");
+        await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "Where should I go?");
+        let directionChoices = {
+            left: "Go left",
+            right: "Go right"
         };
-        let lookCloserButton = await Template.ƒS.Menu.getInput(lookCloser, "choicesCSSclass");
-        let clickedLookCloserButton;
-        if (clickedLookCloserButton) {
-            delete lookCloser.interactLookCloser;
+        let directionChoiceButtons = await Template.ƒS.Menu.getInput(directionChoices, "choicesCSSclass");
+        switch (directionChoiceButtons) {
+            case directionChoices.left:
+                console.log("went left: find energy core first");
+            // go to left side, find core, then go to right side
+            case directionChoices.right:
+                console.log("went right: find robot first");
+                await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "Oh what's that over there?");
+                await Template.ƒS.Location.show(Template.location.blackBackground); // Background!!!
+                await Template.ƒS.update(0.5);
+                await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "What's this? Looks like a robot of some sorts.");
+                let lookCloser = {
+                    interactLookCloser: "Take a closer look"
+                };
+                let lookCloserButton = await Template.ƒS.Menu.getInput(lookCloser, "choicesCSSclass");
+                let clickedLookCloserButton;
+                if (clickedLookCloserButton) {
+                    delete lookCloser.interactLookCloser;
+                }
+                if (lookCloserButton) {
+                    await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "Looks somewhat familiar... There should be a power button right here.");
+                    await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "AWAKEN, LITTLE ONE!!...");
+                    await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "...");
+                    await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "...");
+                    await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "...Hm... That didn't work...");
+                    await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "Maybe it's missing a part? Oh yeah, right here. Seems like there's supposed to be something here.");
+                    await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "What was the name of this component again?");
+                    await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "Ugh... my mind is still a little foggy...");
+                    await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "Anyway, let's look for this... thing!");
+                    break;
+                    // --> go to left side and find core, then return to robot
+                }
         }
-        if (lookCloserButton) {
-            await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "Doesn't seem to work... Maybe it's missing a part?");
-            Template.ƒS.Inventory.add(Template.items.energyCore);
-            await Template.ƒS.Inventory.open();
-            await Template.ƒS.update();
-        }
+        // continue: both robot and core found? --> insert core into robot, robot wakes up --> Buddy introduction scene
+        Template.ƒS.Inventory.add(Template.items.energyCore);
+        await Template.ƒS.Inventory.open();
+        await Template.ƒS.update();
     }
     Template.Scene2 = Scene2;
 })(Template || (Template = {}));
@@ -261,14 +288,17 @@ var Template;
         Template.ƒS.Speech.hide();
         //await ƒS.Character.show(characters.mainCharacter, characters.mainCharacter.pose.normal, ƒS.positions.bottomcenter);
         //await ƒS.Character.show(characters.companion, characters.companion.pose.happy, ƒS.positions.bottomcenter);
-        await Template.ƒS.Location.show(Template.location.blackBackground);
+        await Template.ƒS.Location.show(Template.location.blackBackground); // darker version of room as bg (barely able to see something)
         await Template.ƒS.update(0.5);
-        await Template.ƒS.Speech.tell(Template.characters.inGameNarrator, "You wake up. Everything around you is dark.");
-        await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "Owww, my head...");
-        await Template.ƒS.Speech.tell(Template.characters.inGameNarrator, "You can feel the cold ground beneath you. As you try to get up, the light suddenly turns on.");
+        await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "Urgh... Where... am I?");
+        await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "Owww... my head...");
+        await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "Why is it so dark?? I can't see anything!");
+        await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "I should try to get up...");
         await Template.ƒS.Location.show(Template.location.moonStationInterior);
-        await Template.ƒS.update(0.5);
-        await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "Ah, it's so bright!... What is this place?");
+        await Template.ƒS.update(0.1);
+        await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "Ah, it's so bright! ");
+        await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "Huh?");
+        await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "What is this place?");
         let lookAround = {
             interactLookAround: "Look around the place"
         };
@@ -294,24 +324,19 @@ var Template;
                 await Template.ƒS.Speech.tell(Template.characters.helmetVoice, "WARNING! HAZARDOUS ENVIRONMENT. DO NOT TAKE OFF YOUR HELMET!");
                 await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "Damn that scared me. So don't take it off? But it's so weird, I can't seem to remember what my face looks like...");
                 await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "Surely taking it off for just a moment won't be that bad, right?");
+                await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "And I still feel so dizzy...");
                 await Template.ƒS.Speech.tell(Template.characters.helmetVoice, "WARNING! HAZARDOUS ENVIRONMENT. DO NOT TAKE OFF YOUR HELMET!");
                 let helmetChoices = {
                     takeOff: "Take helmet off",
                     leaveOn: "Leave helmet on"
                 };
                 let helmetChoiceButtons = await Template.ƒS.Menu.getInput(helmetChoices, "choicesCSSclass");
-                let madeChoice;
-                //let pickedNo: boolean;
-                //let pickedBla: boolean;
-                if (madeChoice) {
-                    delete helmetChoices.takeOff;
-                }
                 switch (helmetChoiceButtons) {
                     case helmetChoices.takeOff:
                         console.log("go to game over 1");
+                        Template.dataForSave.takenOffHelmet = true;
                         return "GameOver1";
                     case helmetChoices.leaveOn:
-                        // continue path here
                         await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "Hmm... maybe I shouldn't risk it.");
                         return "Scene2";
                 }

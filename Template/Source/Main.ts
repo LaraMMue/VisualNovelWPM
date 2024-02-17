@@ -86,7 +86,7 @@ namespace Template {
   export let items = {
     energyCore: {
       name: "Strange Energy Core",
-      description: "An electric device that looks like a robot energy core",
+      description: "An electric device used to power certain robots",
       image: "Images/Items/itemTest.png",
       static: false
     }
@@ -94,7 +94,8 @@ namespace Template {
 
   //  GAME PROGRESS DATA SAVE
   export let dataForSave = {
-    nameMC: ""
+    nameMC: "",
+    takenOffHelmet: false
   };
 
   

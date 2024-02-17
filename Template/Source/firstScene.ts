@@ -6,14 +6,17 @@ namespace Template {
       
       //await ƒS.Character.show(characters.mainCharacter, characters.mainCharacter.pose.normal, ƒS.positions.bottomcenter);
       //await ƒS.Character.show(characters.companion, characters.companion.pose.happy, ƒS.positions.bottomcenter);
-      await ƒS.Location.show(location.blackBackground);
+      await ƒS.Location.show(location.blackBackground); // darker version of room as bg (barely able to see something)
       await ƒS.update(0.5);
-      await ƒS.Speech.tell(characters.inGameNarrator, "You wake up. Everything around you is dark.");
-      await ƒS.Speech.tell(characters.mainCharacter, "Owww, my head...");
-      await ƒS.Speech.tell(characters.inGameNarrator, "You can feel the cold ground beneath you. As you try to get up, the light suddenly turns on.");
+      await ƒS.Speech.tell(characters.mainCharacter, "Urgh... Where... am I?");
+      await ƒS.Speech.tell(characters.mainCharacter, "Owww... my head...");
+      await ƒS.Speech.tell(characters.mainCharacter, "Why is it so dark?? I can't see anything!");
+      await ƒS.Speech.tell(characters.mainCharacter, "I should try to get up...");
       await ƒS.Location.show(location.moonStationInterior);
-      await ƒS.update(0.5);
-      await ƒS.Speech.tell(characters.mainCharacter, "Ah, it's so bright!... What is this place?");
+      await ƒS.update(0.1);
+      await ƒS.Speech.tell(characters.mainCharacter, "Ah, it's so bright! ");
+      await ƒS.Speech.tell(characters.mainCharacter, "Huh?");
+      await ƒS.Speech.tell(characters.mainCharacter, "What is this place?");
       
       let lookAround = {
         interactLookAround: "Look around the place"
@@ -48,6 +51,8 @@ namespace Template {
           await ƒS.Speech.tell(characters.helmetVoice, "WARNING! HAZARDOUS ENVIRONMENT. DO NOT TAKE OFF YOUR HELMET!");
           await ƒS.Speech.tell(characters.mainCharacter, "Damn that scared me. So don't take it off? But it's so weird, I can't seem to remember what my face looks like...");
           await ƒS.Speech.tell(characters.mainCharacter, "Surely taking it off for just a moment won't be that bad, right?");
+          await ƒS.Speech.tell(characters.mainCharacter, "And I still feel so dizzy...");
+
           await ƒS.Speech.tell(characters.helmetVoice, "WARNING! HAZARDOUS ENVIRONMENT. DO NOT TAKE OFF YOUR HELMET!");
 
           let helmetChoices = {
@@ -57,20 +62,13 @@ namespace Template {
     
           let helmetChoiceButtons = await ƒS.Menu.getInput(helmetChoices, "choicesCSSclass");
     
-          let madeChoice: boolean;
-          //let pickedNo: boolean;
-          //let pickedBla: boolean;
-    
-          if (madeChoice) {
-            delete helmetChoices.takeOff;
-          }
     
           switch (helmetChoiceButtons) {
             case helmetChoices.takeOff:
                 console.log("go to game over 1");
+                dataForSave.takenOffHelmet = true;
                 return "GameOver1";
             case helmetChoices.leaveOn:
-                // continue path here
                 await ƒS.Speech.tell(characters.mainCharacter, "Hmm... maybe I shouldn't risk it.");
                 return "Scene2"
             
