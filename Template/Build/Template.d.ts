@@ -11,6 +11,9 @@ declare namespace Template {
     let sound: {
         soundName: string;
     };
+    let music: {
+        musicName: string;
+    };
     let location: {
         moonStationInterior: {
             name: string;
@@ -77,6 +80,9 @@ declare namespace Template {
     let dataForSave: {
         nameMC: string;
         takenOffHelmet: boolean;
+        buddyScore: number;
+        sirMadam: string;
+        momDad: string;
     };
     let gameMenu: ƒS.Menu;
     function increaseSound(): void;
@@ -88,6 +94,9 @@ declare namespace Template {
 }
 declare namespace Template {
     function Scene2(): ƒS.SceneReturn;
+}
+declare namespace Template {
+    function Scene3(): ƒS.SceneReturn;
 }
 declare namespace Template {
     function tutorial(): ƒS.SceneReturn;

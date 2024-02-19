@@ -6,9 +6,9 @@ namespace Template {
 
   export let transition = {
     transitionName: {
-      duration: 1,
-      alpha: "",
-      edge: 1
+      duration: 1, //duration in s
+      alpha: "", // path to the transition image b/w
+      edge: 1 // how hard/soft transition is
     }
   };
 
@@ -16,8 +16,10 @@ namespace Template {
     // SFX
     soundName: "Pfad (relativ) zB Audio/sound.mp3"
 
-    // themes
+  };
 
+  export let music = {
+    musicName: "Pfad zu mp3"
   };
 
   export let location = {
@@ -92,13 +94,20 @@ namespace Template {
     }
   };
 
+  /*export function useItem(name: string) {
+    document.getElementById(name).remove();
+  }*/
+
   //  GAME PROGRESS DATA SAVE
   export let dataForSave = {
     nameMC: "",
-    takenOffHelmet: false
+    takenOffHelmet: false,
+    buddyScore: 0,
+    sirMadam: "",
+    momDad: ""
   };
 
-  
+
   //Menu shortcuts
   let inGameMenuButtons = {
     save: "Save", // erstellt eine json save datei, die heruntergeladen werden kann
@@ -114,6 +123,7 @@ namespace Template {
   export let gameMenu: ƒS.Menu;
 
   let menuIsOpen: boolean = false;
+  let inventoryIsOpen: boolean = false;
 
   let volume: number = 4.0;
 
@@ -124,16 +134,16 @@ namespace Template {
   }
 
   export function decreaseVolume(): void {
-    if (volume <=0) return;
+    if (volume <= 0) return;
     volume -= 1;
     ƒS.Sound.setMasterVolume(volume);
   }
 
   export function displayCredits(): void {
     ƒS.Text.print(
-      "Author: Lara Marie Müller " + 
+      "Author: Lara Marie Müller " +
       "<br/>" +
-      "Visual Novel WiSe 2023/24" 
+      "Visual Novel WiSe 2023/24"
     );
   }
 
@@ -156,20 +166,20 @@ namespace Template {
       case inGameMenuButtons.increaseVolume:
         increaseSound();
         console.log("increased Volume to " + volume);
-        
+
         break;
       case inGameMenuButtons.decreaseVolume:
         decreaseVolume();
         console.log("decreased Volume to " + volume);
-        
+
         break;
       case inGameMenuButtons.credits:
         displayCredits();
         console.log("Opened Credits");
-        
+
         break;
-    } 
-    
+    }
+
   }
 
   document.addEventListener("keydown", handleKeyPress);
@@ -185,32 +195,46 @@ namespace Template {
         break;
       case ƒ.KEYBOARD_CODE.M:
         if (menuIsOpen) {
-          console.log("Close");
+          console.log("Close Menu");
           gameMenu.close();
           menuIsOpen = false;
         }
         else {
-          console.log("Open");
+          console.log("Open Menu");
           gameMenu.open();
           menuIsOpen = true;
         }
-        
-        
+        break;
+      case ƒ.KEYBOARD_CODE.I:
+        if (inventoryIsOpen) {
+          console.log("Close Inventory");
+          ƒS.Inventory.close();
+          inventoryIsOpen = false;
+        }
+        else {
+          console.log("Open Inventory");
+          ƒS.Inventory.open();
+          inventoryIsOpen = true;
+
+        }
+
+
     }
   }
-  
+
 
   window.addEventListener("load", start);
   function start(_event: Event): void {
     gameMenu = ƒS.Menu.create(inGameMenuButtons, buttonFunctionalities, "gameMenuCSSclass");  // optionale CSS Klasse benutzen um Menü zu gestalten
     gameMenu.close();
-    
+
     // SCENE HIERARCHY
     let scenes: ƒS.Scenes = [
       { id: "tutorial", scene: tutorial, name: "Tutorial" }, //id zum aufrufen der Szenen
-      { id: "firstScene", scene: firstScene, name: "First Scene" },
-      { id: "GameOver1", scene: gameOver1, name: "Game Over 1"},
-      { id: "Scene2", scene: Scene2, name: "Second Scene"}
+      { id: "firstScene", scene: firstScene, name: "Wake up" },
+      { id: "GameOver1", scene: gameOver1, name: "Game Over 1" },
+      { id: "Scene2", scene: Scene2, name: "Find Robot" },
+      { id: "Scene3", scene: Scene3, name: "Meet Robot" }
     ];
 
     let uiElement: HTMLElement = document.querySelector("[type=interface]");
