@@ -116,6 +116,12 @@ declare namespace Template {
             image: string;
             static: boolean;
         };
+        novelInfirmaryNotes: {
+            name: string;
+            description: string;
+            image: string;
+            static: boolean;
+        };
     };
     let dataForSave: {
         nameMC: string;

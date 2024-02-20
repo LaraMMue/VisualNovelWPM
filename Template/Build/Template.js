@@ -11,7 +11,7 @@ var Template;
             edge: 1 // how hard/soft transition is
         },
         wipeLeftTopRightBottom: {
-            duration: 2,
+            duration: 0.5,
             alpha: "Images/Transitions/topLeftBottomRight.png",
             edge: 0.5
         }
@@ -137,6 +137,12 @@ var Template;
             description: "An electric device used to power certain robots",
             image: "Images/Items/itemTest.png",
             static: false
+        },
+        novelInfirmaryNotes: {
+            name: "Paper Notes",
+            description: "Notes on a piece of paper you found in the infirmary",
+            image: "Images/Items/novel1-infirmaryNotes.png",
+            static: true
         }
     };
     /*export function useItem(name: string) {
@@ -508,7 +514,16 @@ var Template;
         await Template.ƒS.Character.show(Template.characters.companion, Template.characters.companion.pose.normal, Template.ƒS.positions.bottomcenter);
         await Template.ƒS.update(0.5);
         await Template.ƒS.Speech.tell(Template.characters.companion, "This is Moonbase Alpha-7, a c-cutting-edge research station.");
-        // continue text
+        await Template.ƒS.Speech.tell(Template.characters.companion, "Our primary purpose is to c-contribute to the progress of humankind in understanding the cosmos.");
+        await Template.ƒS.Speech.tell(Template.characters.companion, "Our es-esteemed scientists in the different re-research stations on the moon work on a variety of pr-projects, ranging from lunar geology to astrophysics.");
+        await Template.ƒS.Speech.tell(Template.characters.companion, "Alpha-7 researchers in particular focus on advancing robotic and AI technologies for i-intergalactic travel and outer terrestrial settlement. ");
+        await Template.ƒS.Speech.tell(Template.characters.companion, "From life s-support systems to...");
+        await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "Wait wait wait, did you just say we are on the moon?");
+        await Template.ƒS.Speech.tell(Template.characters.companion, "Yes " + Template.dataForSave.sirMadam + " " + Template.characters.mainCharacter.name + ", precisely. Alpha-7 is located on the lunar surface.");
+        await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "Wow...  That's crazy... But... where is everyone?");
+        await Template.ƒS.Speech.tell(Template.characters.companion, "You appear m-more disoriented than I thought. Hopefully Doctor Mitchell can have a g-good look at your head, it should be her shift around this t-time.");
+        await Template.ƒS.Speech.tell(Template.characters.companion, "The medical facilities here are state-of-the-art, with some of the best doctors you could wish for and equipped to handle any he-health concerns you may have.");
+        await Template.ƒS.Speech.tell(Template.characters.companion, "I can assure you that you wi-will be in good hands.");
         await Template.ƒS.Character.hide(Template.characters.companion);
         await Template.ƒS.update(0.5);
         await Template.ƒS.Location.show(Template.location.infirmary);
@@ -518,13 +533,27 @@ var Template;
         await Template.ƒS.update(0.5);
         await Template.ƒS.Speech.tell(Template.characters.companion, "Please sit d-down over there while I ex-explain the situation to the Doctor.");
         await Template.ƒS.Speech.tell(Template.characters.companion, "I'll be back in a moment.");
-        //animate robot leaving screen!
         await Template.ƒS.Character.hide(Template.characters.companion);
+        //animate robot leaving screen and coming back
         await Template.ƒS.Character.animate(Template.characters.companion, Template.characters.companion.pose.normal, Template.characterLeaveScreen());
         await Template.ƒS.Character.animate(Template.characters.companion, Template.characters.companion.pose.normal, Template.characterWalkIn());
         await Template.ƒS.Speech.tell(Template.characters.companion, "Doctor Mitchell is not here at the moment. Please wait while I look for someone else.");
         await Template.ƒS.Character.animate(Template.characters.companion, Template.characters.companion.pose.normal, Template.characterLeaveScreen());
         await Template.ƒS.Character.hide(Template.characters.companion);
+        await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "Hmm, what should I do while I wait? Maybe I could use the time to investigate a bit more...");
+        await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "Somehow this room looks like no one has been here for a while but all the electric devices are still running...");
+        await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "Is this a fridge? With... weird bags inside. AB+... O-... O+... A-... ");
+        await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "Oh that must be blood for transfusions! They all have such a weird color though, it doesn't even look like blood... Or maybe it's just rotten?");
+        await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "What else... a bunch of tools, bottles and other stuff that I don't know.");
+        await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "I guess that let's me rule out the possibility of being a doctor? Judging from my outfit I could be an astronaut or something similar.");
+        await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "I mean we <i>are</i> in a research station on the moon, so... But then again, the researchers might also use spacesuits.");
+        await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "Maybe I'm a researcher then? Argh, I really can't figure it out. I'll just try to find some more information.");
+        await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "Like on this computer for example, I should be able to find some medical records of the people that worked here right? If it turns on... which...");
+        await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "... it doesn't, of course... great... would have been too easy...");
+        await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "Maybe something interesting on these papers?");
+        Template.ƒS.Inventory.add(Template.items.novelInfirmaryNotes);
+        await Template.ƒS.update();
+        await Template.ƒS.Inventory.open();
     }
     Template.Scene4 = Scene4;
 })(Template || (Template = {}));

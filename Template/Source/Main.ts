@@ -12,7 +12,7 @@ namespace Template {
     },
 
     wipeLeftTopRightBottom: {
-      duration: 2,
+      duration: 0.5,
       alpha: "Images/Transitions/topLeftBottomRight.png",
       edge: 0.5
     }
@@ -158,6 +158,13 @@ namespace Template {
       description: "An electric device used to power certain robots",
       image: "Images/Items/itemTest.png",
       static: false
+    },
+
+    novelInfirmaryNotes: {
+      name: "Paper Notes",
+      description: "Notes on a piece of paper you found in the infirmary",
+      image: "Images/Items/novel1-infirmaryNotes.png",
+      static: true
     }
   };
 
