@@ -9,6 +9,11 @@ var Template;
             duration: 1, //duration in s
             alpha: "", // path to the transition image b/w
             edge: 1 // how hard/soft transition is
+        },
+        wipeLeftTopRightBottom: {
+            duration: 2,
+            alpha: "Images/Transitions/topLeftBottomRight.png",
+            edge: 0.5
         }
     };
     Template.sound = {
@@ -16,7 +21,8 @@ var Template;
         soundName: "Pfad (relativ) zB Audio/sound.mp3"
     };
     Template.music = {
-        musicName: "Pfad zu mp3"
+        musicName: "Pfad zu mp3",
+        solitaryExploration: "Sound/Music/solitaryExploration.mp3"
     };
     Template.location = {
         moonStationInterior: {
@@ -48,8 +54,12 @@ var Template;
             background: "Images/Backgrounds/storage.png"
         },
         moonHallway: {
-            name: "Mopn Station Hallway",
+            name: "Moon Base Hallway",
             background: "Images/Backgrounds/moonStationHallway.png"
+        },
+        infirmary: {
+            name: "Infirmary",
+            background: "Images/Backgrounds/infirmary.png"
         },
         blackBackground: {
             name: "Black Background",
@@ -101,6 +111,26 @@ var Template;
             }
         }
     };
+    function characterLeaveScreen() {
+        return {
+            start: { translation: Template.ƒS.positionPercent(50, 100) },
+            end: { translation: Template.ƒS.positionPercent(200, 100) },
+            duration: 4,
+            playmode: Template.ƒS.ANIMATION_PLAYMODE.PLAYONCE
+        };
+    }
+    Template.characterLeaveScreen = characterLeaveScreen;
+    ;
+    function characterWalkIn() {
+        return {
+            start: { translation: Template.ƒS.positionPercent(200, 100) },
+            end: { translation: Template.ƒS.positionPercent(50, 100) },
+            duration: 4,
+            playmode: Template.ƒS.ANIMATION_PLAYMODE.PLAYONCE
+        };
+    }
+    Template.characterWalkIn = characterWalkIn;
+    ;
     Template.items = {
         energyCore: {
             name: "Strange Energy Core",
@@ -284,7 +314,7 @@ var Template;
                 await Template.ƒS.update();
                 await Template.ƒS.Location.show(Template.location.moonStationInterior);
                 await Template.ƒS.update(0.5);
-                await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "Let's go over there too");
+                await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "Let's go over there too.");
                 break;
             // go to left side, find core, then go to right side
             case directionChoices.right:
@@ -445,7 +475,7 @@ var Template;
         await Template.ƒS.Speech.tell(Template.characters.companion, "Are you a-able to wa-walk?");
         await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "Yeah it should be fine.");
         await Template.ƒS.Character.show(Template.characters.companion, Template.characters.companion.pose.normal, Template.ƒS.positions.bottomcenter);
-        await Template.ƒS.update(1.5);
+        await Template.ƒS.update(0.5);
         await Template.ƒS.Speech.tell(Template.characters.companion, "There seems t-to be an issue with my la-language module.");
         await Template.ƒS.Speech.tell(Template.characters.companion, "I apologize for the st-stutter. I will have this ch-checked as soon as possible.");
         let stutterChoices = {
@@ -477,7 +507,24 @@ var Template;
         await Template.ƒS.Character.hide(Template.characters.companion);
         await Template.ƒS.Character.show(Template.characters.companion, Template.characters.companion.pose.normal, Template.ƒS.positions.bottomcenter);
         await Template.ƒS.update(0.5);
-        await Template.ƒS.Speech.tell(Template.characters.companion, "This is Moonbase Alpha-7, a c-cutting-edge research station."); // continue text
+        await Template.ƒS.Speech.tell(Template.characters.companion, "This is Moonbase Alpha-7, a c-cutting-edge research station.");
+        // continue text
+        await Template.ƒS.Character.hide(Template.characters.companion);
+        await Template.ƒS.update(0.5);
+        await Template.ƒS.Location.show(Template.location.infirmary);
+        await Template.ƒS.update(Template.transition.wipeLeftTopRightBottom.duration, Template.transition.wipeLeftTopRightBottom.alpha, Template.transition.wipeLeftTopRightBottom.edge);
+        await Template.ƒS.Speech.tell(Template.characters.companion, "Here we are.");
+        await Template.ƒS.Character.show(Template.characters.companion, Template.characters.companion.pose.normal, Template.ƒS.positions.bottomcenter);
+        await Template.ƒS.update(0.5);
+        await Template.ƒS.Speech.tell(Template.characters.companion, "Please sit d-down over there while I ex-explain the situation to the Doctor.");
+        await Template.ƒS.Speech.tell(Template.characters.companion, "I'll be back in a moment.");
+        //animate robot leaving screen!
+        await Template.ƒS.Character.hide(Template.characters.companion);
+        await Template.ƒS.Character.animate(Template.characters.companion, Template.characters.companion.pose.normal, Template.characterLeaveScreen());
+        await Template.ƒS.Character.animate(Template.characters.companion, Template.characters.companion.pose.normal, Template.characterWalkIn());
+        await Template.ƒS.Speech.tell(Template.characters.companion, "Doctor Mitchell is not here at the moment. Please wait while I look for someone else.");
+        await Template.ƒS.Character.animate(Template.characters.companion, Template.characters.companion.pose.normal, Template.characterLeaveScreen());
+        await Template.ƒS.Character.hide(Template.characters.companion);
     }
     Template.Scene4 = Scene4;
 })(Template || (Template = {}));
@@ -505,7 +552,7 @@ var Template;
                 await Template.ƒS.Speech.tell(Template.characters.narrator, "To restart the game from this save point, you'll have to load the right .json file into the game by choosing “load game” in the menu. ");
                 await Template.ƒS.Speech.tell(Template.characters.narrator, "Note that there is no automatic saving. ");
                 await Template.ƒS.Speech.tell(Template.characters.narrator, "Unless you have saved your progress manually within a .json file, the game will start from the very beginning after reloading or closing the browser window. ");
-                await Template.ƒS.Speech.tell(Template.characters.narrator, "You can access your inventory by pressing the “” key on your keyboard. "); //which key???
+                await Template.ƒS.Speech.tell(Template.characters.narrator, "You can access your inventory by pressing the I key on your keyboard. "); //which key???
                 await Template.ƒS.Speech.tell(Template.characters.narrator, "Alright, now you're all set. We will meet again, Stranger…");
                 break;
             case dialogue.iSkipTutorial:
@@ -521,6 +568,8 @@ var Template;
         Template.ƒS.Speech.hide();
         //await ƒS.Character.show(characters.mainCharacter, characters.mainCharacter.pose.normal, ƒS.positions.bottomcenter);
         //await ƒS.Character.show(characters.companion, characters.companion.pose.happy, ƒS.positions.bottomcenter);
+        Template.ƒS.Sound.fade(Template.music.solitaryExploration, 0.1, 3, true); // (name, volume level to fade to, duration of the fading, loop track?)
+        console.log(Template.music.solitaryExploration + " is playing");
         await Template.ƒS.Location.show(Template.location.moonStationInteriorDark); // darker version of room as bg (barely able to see something)
         await Template.ƒS.update(0.5);
         await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "Urgh... Where... am I?");
@@ -528,7 +577,8 @@ var Template;
         await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "Why is it so dark?? I can't see anything!");
         await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "I should try to get up...");
         await Template.ƒS.Location.show(Template.location.moonStationInterior);
-        await Template.ƒS.update(0.1);
+        //await ƒS.update(0.1);
+        await Template.ƒS.update(Template.transition.wipeLeftTopRightBottom.duration, Template.transition.wipeLeftTopRightBottom.alpha, Template.transition.wipeLeftTopRightBottom.edge);
         await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "Ah, it's so bright! ");
         await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "Huh?");
         await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "What is this place?");

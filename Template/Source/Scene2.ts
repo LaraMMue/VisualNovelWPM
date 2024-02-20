@@ -47,7 +47,7 @@ namespace Template {
 
         await ƒS.Location.show(location.moonStationInterior);
         await ƒS.update(0.5);
-        await ƒS.Speech.tell(characters.mainCharacter, "Let's go over there too");
+        await ƒS.Speech.tell(characters.mainCharacter, "Let's go over there too.");
 
 
         break;

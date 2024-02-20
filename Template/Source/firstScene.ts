@@ -6,6 +6,9 @@ namespace Template {
 
     //await ƒS.Character.show(characters.mainCharacter, characters.mainCharacter.pose.normal, ƒS.positions.bottomcenter);
     //await ƒS.Character.show(characters.companion, characters.companion.pose.happy, ƒS.positions.bottomcenter);
+    ƒS.Sound.fade(music.solitaryExploration, 0.1, 3, true); // (name, volume level to fade to, duration of the fading, loop track?)
+    console.log(music.solitaryExploration + " is playing");
+
     await ƒS.Location.show(location.moonStationInteriorDark); // darker version of room as bg (barely able to see something)
     await ƒS.update(0.5);
     await ƒS.Speech.tell(characters.mainCharacter, "Urgh... Where... am I?");
@@ -13,7 +16,8 @@ namespace Template {
     await ƒS.Speech.tell(characters.mainCharacter, "Why is it so dark?? I can't see anything!");
     await ƒS.Speech.tell(characters.mainCharacter, "I should try to get up...");
     await ƒS.Location.show(location.moonStationInterior);
-    await ƒS.update(0.1);
+    //await ƒS.update(0.1);
+    await ƒS.update(transition.wipeLeftTopRightBottom.duration, transition.wipeLeftTopRightBottom.alpha, transition.wipeLeftTopRightBottom.edge);
     await ƒS.Speech.tell(characters.mainCharacter, "Ah, it's so bright! ");
     await ƒS.Speech.tell(characters.mainCharacter, "Huh?");
     await ƒS.Speech.tell(characters.mainCharacter, "What is this place?");

@@ -9,17 +9,26 @@ namespace Template {
       duration: 1, //duration in s
       alpha: "", // path to the transition image b/w
       edge: 1 // how hard/soft transition is
+    },
+
+    wipeLeftTopRightBottom: {
+      duration: 2,
+      alpha: "Images/Transitions/topLeftBottomRight.png",
+      edge: 0.5
     }
+
   };
 
   export let sound = {
     // SFX
     soundName: "Pfad (relativ) zB Audio/sound.mp3"
 
+
   };
 
   export let music = {
-    musicName: "Pfad zu mp3"
+    musicName: "Pfad zu mp3",
+    solitaryExploration: "Sound/Music/solitaryExploration.mp3"
   };
 
   export let location = {
@@ -59,8 +68,13 @@ namespace Template {
     },
 
     moonHallway: {
-      name: "Mopn Station Hallway",
+      name: "Moon Base Hallway",
       background: "Images/Backgrounds/moonStationHallway.png"
+    },
+
+    infirmary: {
+      name: "Infirmary",
+      background: "Images/Backgrounds/infirmary.png"
     },
 
     blackBackground: {
@@ -117,6 +131,24 @@ namespace Template {
         happy: "",
         upset: ""
       }
+    }
+  };
+
+  export function characterLeaveScreen(): ƒS.AnimationDefinition {
+    return {
+      start: { translation: ƒS.positionPercent(50, 100) },
+      end: { translation: ƒS.positionPercent(200, 100) },
+      duration: 4,
+      playmode: ƒS.ANIMATION_PLAYMODE.PLAYONCE
+    }
+  };
+
+  export function characterWalkIn(): ƒS.AnimationDefinition {
+    return {
+      start: { translation: ƒS.positionPercent(200, 100) },
+      end: { translation: ƒS.positionPercent(50, 100) },
+      duration: 4,
+      playmode: ƒS.ANIMATION_PLAYMODE.PLAYONCE
     }
   };
 

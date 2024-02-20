@@ -7,12 +7,18 @@ declare namespace Template {
             alpha: string;
             edge: number;
         };
+        wipeLeftTopRightBottom: {
+            duration: number;
+            alpha: string;
+            edge: number;
+        };
     };
     let sound: {
         soundName: string;
     };
     let music: {
         musicName: string;
+        solitaryExploration: string;
     };
     let location: {
         moonStationInterior: {
@@ -44,6 +50,10 @@ declare namespace Template {
             background: string;
         };
         moonHallway: {
+            name: string;
+            background: string;
+        };
+        infirmary: {
             name: string;
             background: string;
         };
@@ -97,6 +107,8 @@ declare namespace Template {
             };
         };
     };
+    function characterLeaveScreen(): ƒS.AnimationDefinition;
+    function characterWalkIn(): ƒS.AnimationDefinition;
     let items: {
         energyCore: {
             name: string;
