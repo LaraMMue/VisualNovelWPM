@@ -77,6 +77,7 @@ namespace Template {
         await ƒS.Speech.tell(characters.mainCharacter, "I've looked around a few rooms but couldn't find anyone else. Maybe you know something?");
         await ƒS.Speech.tell(characters.companion, "Oh m-my, perhaps you have suffered a head injury? You should go to the infirmary and see a d-doctor immediately! ");
         await ƒS.Speech.tell(characters.companion, "I will take you there and try to a-answer all your questions on the way. Follow m-me.");
+        await ƒS.Character.hide(characters.companion);
 
         return "Scene4";
 

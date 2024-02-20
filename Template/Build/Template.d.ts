@@ -127,6 +127,9 @@ declare namespace Template {
     function Scene3(): ƒS.SceneReturn;
 }
 declare namespace Template {
+    function Scene4(): ƒS.SceneReturn;
+}
+declare namespace Template {
     function tutorial(): ƒS.SceneReturn;
 }
 declare namespace Template {

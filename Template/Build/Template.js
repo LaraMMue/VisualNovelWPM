@@ -116,7 +116,7 @@ var Template;
     Template.dataForSave = {
         nameMC: "",
         takenOffHelmet: false,
-        buddyScore: 0,
+        buddyScore: 5,
         sirMadam: "",
         momDad: ""
     };
@@ -230,7 +230,8 @@ var Template;
             { id: "firstScene", scene: Template.firstScene, name: "Wake up" },
             { id: "GameOver1", scene: Template.gameOver1, name: "Game Over 1" },
             { id: "Scene2", scene: Template.Scene2, name: "Find Robot" },
-            { id: "Scene3", scene: Template.Scene3, name: "Meet Robot" }
+            { id: "Scene3", scene: Template.Scene3, name: "Meet Robot" },
+            { id: "Scene4", scene: Template.Scene4, name: "Scene4" }
         ];
         let uiElement = document.querySelector("[type=interface]");
         Template.dataForSave = Template.ƒS.Progress.setData(Template.dataForSave, uiElement);
@@ -430,9 +431,55 @@ var Template;
         await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "I've looked around a few rooms but couldn't find anyone else. Maybe you know something?");
         await Template.ƒS.Speech.tell(Template.characters.companion, "Oh m-my, perhaps you have suffered a head injury? You should go to the infirmary and see a d-doctor immediately! ");
         await Template.ƒS.Speech.tell(Template.characters.companion, "I will take you there and try to a-answer all your questions on the way. Follow m-me.");
+        await Template.ƒS.Character.hide(Template.characters.companion);
         return "Scene4";
     }
     Template.Scene3 = Scene3;
+})(Template || (Template = {}));
+var Template;
+(function (Template) {
+    async function Scene4() {
+        console.log("Scene 4 starting");
+        await Template.ƒS.Location.show(Template.location.moonHallway);
+        await Template.ƒS.update(0.5);
+        await Template.ƒS.Speech.tell(Template.characters.companion, "Are you a-able to wa-walk?");
+        await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "Yeah it should be fine.");
+        await Template.ƒS.Character.show(Template.characters.companion, Template.characters.companion.pose.normal, Template.ƒS.positions.bottomcenter);
+        await Template.ƒS.update(1.5);
+        await Template.ƒS.Speech.tell(Template.characters.companion, "There seems t-to be an issue with my la-language module.");
+        await Template.ƒS.Speech.tell(Template.characters.companion, "I apologize for the st-stutter. I will have this ch-checked as soon as possible.");
+        let stutterChoices = {
+            dontMind: "I don't mind",
+            fixIt: "Fix it!"
+        };
+        let stutterButtons = await Template.ƒS.Menu.getInput(stutterChoices, "choicesCSSclass");
+        switch (stutterButtons) {
+            case stutterChoices.dontMind:
+                Template.dataForSave.buddyScore += 1;
+                await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "It's alright, I don't mind.");
+                await Template.ƒS.Character.hide(Template.characters.companion);
+                await Template.ƒS.Character.show(Template.characters.companion, Template.characters.companion.pose.happy, Template.ƒS.positions.bottomcenter);
+                await Template.ƒS.update(0.5);
+                await Template.ƒS.Speech.tell(Template.characters.companion, "Oh okay!");
+                console.log(Template.dataForSave.buddyScore);
+                break;
+            case stutterChoices.fixIt:
+                Template.dataForSave.buddyScore -= 1;
+                await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "Yeah you better fix it soon. It's really annoying.");
+                await Template.ƒS.Character.hide(Template.characters.companion);
+                await Template.ƒS.Character.show(Template.characters.companion, Template.characters.companion.pose.sad, Template.ƒS.positions.bottomcenter);
+                await Template.ƒS.update(0.5);
+                await Template.ƒS.Speech.tell(Template.characters.companion, "Oh okay...");
+                console.log(Template.dataForSave.buddyScore);
+                break;
+        }
+        await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "So where are we?");
+        await Template.ƒS.Character.hide(Template.characters.companion);
+        await Template.ƒS.Character.show(Template.characters.companion, Template.characters.companion.pose.normal, Template.ƒS.positions.bottomcenter);
+        await Template.ƒS.update(0.5);
+        await Template.ƒS.Speech.tell(Template.characters.companion, "This is Moonbase Alpha-7, a c-cutting-edge research station."); // continue text
+    }
+    Template.Scene4 = Scene4;
 })(Template || (Template = {}));
 var Template;
 (function (Template) {

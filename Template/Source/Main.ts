@@ -137,7 +137,7 @@ namespace Template {
   export let dataForSave = {
     nameMC: "",
     takenOffHelmet: false,
-    buddyScore: 0,
+    buddyScore: 5,
     sirMadam: "",
     momDad: ""
   };
@@ -269,7 +269,8 @@ namespace Template {
       { id: "firstScene", scene: firstScene, name: "Wake up" },
       { id: "GameOver1", scene: gameOver1, name: "Game Over 1" },
       { id: "Scene2", scene: Scene2, name: "Find Robot" },
-      { id: "Scene3", scene: Scene3, name: "Meet Robot" }
+      { id: "Scene3", scene: Scene3, name: "Meet Robot" },
+      { id: "Scene4", scene: Scene4, name: "Scene4" }
     ];
 
     let uiElement: HTMLElement = document.querySelector("[type=interface]");
