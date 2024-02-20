@@ -23,21 +23,49 @@ var Template;
             name: "Moon Station Interior",
             background: "Images/Backgrounds/moonStationRoom1.png"
         },
-        earthFromMoon: {
-            name: "Earth from the Moon",
-            background: "Images/Backgrounds/earthFromMoon.png"
+        moonStationInteriorDark: {
+            name: "Dark Version of the Moon Station Room",
+            background: "Images/Backgrounds/moonStationRoom-dark.png"
+        },
+        mirror: {
+            name: "Mirror",
+            background: "Images/Backgrounds/mirror.png"
+        },
+        cornerRobot: {
+            name: "Corner with deactivated Robot",
+            background: "Images/Backgrounds/cornerRobot.png"
+        },
+        corner: {
+            name: "Corner without Robot",
+            background: "Images/Backgrounds/corner.png"
+        },
+        storageCore: {
+            name: "storage crates with Energy Core",
+            background: "Images/Backgrounds/storageWithCore.png"
+        },
+        storage: {
+            name: "storage crates after picking item up",
+            background: "Images/Backgrounds/storage.png"
+        },
+        moonHallway: {
+            name: "Mopn Station Hallway",
+            background: "Images/Backgrounds/moonStationHallway.png"
         },
         blackBackground: {
             name: "Black Background",
             background: "Images/Backgrounds/blackBackground.png"
+        },
+        earthFromMoon: {
+            name: "Earth from the Moon",
+            background: "Images/Backgrounds/earthFromMoon.png"
         }
     };
     Template.characters = {
         narrator: {
             name: "???"
         },
-        inGameNarrator: {
-            name: "Narrator"
+        system: {
+            name: "SYSTEM"
         },
         mainCharacter: {
             name: "",
@@ -243,23 +271,25 @@ var Template;
                 console.log("went left: find energy core first");
                 leftFirst = true;
                 await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "Something is glowing in that corner!");
-                await Template.ƒS.Location.show(Template.location.blackBackground); // Background!!!
+                await Template.ƒS.Location.show(Template.location.storageCore);
                 await Template.ƒS.update(0.5);
                 await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "Hm, looks like some kind of mechanical component. Aren't these used to power robots? ");
                 await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "What was the name of this thing again?");
                 await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "Ugh... my mind is still a little foggy... Anyway, I'll take this with me.");
+                await Template.ƒS.Location.show(Template.location.storage);
+                await Template.ƒS.update(0.5);
+                await Template.ƒS.Speech.tell(Template.characters.system, "Energy core added to your inventory.");
                 Template.ƒS.Inventory.add(Template.items.energyCore);
                 await Template.ƒS.update();
                 await Template.ƒS.Location.show(Template.location.moonStationInterior);
                 await Template.ƒS.update(0.5);
                 await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "Let's go over there too");
-                //energyCore = true;
                 break;
             // go to left side, find core, then go to right side
             case directionChoices.right:
                 console.log("went right: find robot first");
                 await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "Oh what's that over there?");
-                await Template.ƒS.Location.show(Template.location.blackBackground); // Background!!!
+                await Template.ƒS.Location.show(Template.location.cornerRobot);
                 await Template.ƒS.update(0.5);
                 await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "What's this? Looks like a robot of some sorts.");
                 lookCloserButton = await Template.ƒS.Menu.getInput(lookCloser, "choicesCSSclass");
@@ -281,11 +311,14 @@ var Template;
                     await Template.ƒS.update(0.5);
                     await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "Hmm... Where should I search... Oh!");
                     await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "Something is glowing in that corner!");
-                    await Template.ƒS.Location.show(Template.location.blackBackground); // Background!!!
+                    await Template.ƒS.Location.show(Template.location.storageCore);
                     await Template.ƒS.update(0.5);
                     await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "Hm, looks like some kind of mechanical component. Maybe it's exactly what I'm looking for!");
                     await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "Ugh... I still can't remember the damn name of this thing.");
                     await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "I'll just take this with me...");
+                    await Template.ƒS.Location.show(Template.location.storage);
+                    await Template.ƒS.update(0.5);
+                    await Template.ƒS.Speech.tell(Template.characters.system, "Energy core added to your inventory.");
                     Template.ƒS.Inventory.add(Template.items.energyCore);
                     await Template.ƒS.update();
                     break;
@@ -293,7 +326,7 @@ var Template;
         }
         if (leftFirst == true) {
             await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "Oh what's that over there?");
-            await Template.ƒS.Location.show(Template.location.blackBackground); // Background!!!
+            await Template.ƒS.Location.show(Template.location.cornerRobot); // Background!!!
             await Template.ƒS.update(0.5);
             await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "What's this? Looks like a robot of some sorts.");
             lookCloserButton = await Template.ƒS.Menu.getInput(lookCloser, "choicesCSSclass");
@@ -314,7 +347,7 @@ var Template;
             }
         }
         else {
-            await Template.ƒS.Location.show(Template.location.blackBackground); // Background!!!
+            await Template.ƒS.Location.show(Template.location.cornerRobot);
             await Template.ƒS.update(0.5);
             await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "Let's see if this is the right one.");
             /*await ƒS.Inventory.open();
@@ -338,6 +371,10 @@ var Template;
 (function (Template) {
     async function Scene3() {
         console.log("Scene 3 starting");
+        await Template.ƒS.Location.show(Template.location.corner);
+        await Template.ƒS.Character.show(Template.characters.companion, Template.characters.companion.pose.normal, Template.ƒS.positions.bottomcenter);
+        await Template.ƒS.update(0.5);
+        console.log("robot character img?");
         await Template.ƒS.Speech.tell(Template.characters.companion, "B... Booting complete! Hello!");
         await Template.ƒS.Speech.tell(Template.characters.companion, "I am a model 388fds9 companion bot, de-designed to help you with your everyday ta-tasks and more!");
         await Template.ƒS.Speech.tell(Template.characters.companion, "You can call me Buddy. How may I h-help you Sir... or u-uhm Madam?");
@@ -361,7 +398,39 @@ var Template;
                 await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "Madam is fine.");
                 break;
         }
-        await Template.ƒS.Speech.tell(Template.characters.companion, "C-certainly " + Template.dataForSave.sirMadam);
+        await Template.ƒS.Speech.tell(Template.characters.companion, "C-certainly " + Template.dataForSave.sirMadam + ". I will adress you like th-this from now on. May I also know your n-name?");
+        await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "My... name?");
+        await Template.ƒS.Speech.tell(Template.characters.companion, "Do not worry. I can a-assure you that I will keep all p-personal information confidential.");
+        await Template.ƒS.Speech.tell(Template.characters.companion, "I am just here to he-help you, " + Template.dataForSave.sirMadam + " ,and the more I know a-about you, the better I can be of s-service!");
+        await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "Yes yes I get that, it's just that now that I think about it... I barely remember my name... What was it again?");
+        Template.dataForSave.nameMC = await Template.ƒS.Speech.getInput();
+        Template.characters.mainCharacter.name = Template.dataForSave.nameMC;
+        await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "(to yourself) " + Template.characters.mainCharacter.name + " ... was that really my name?");
+        await Template.ƒS.update(0.5);
+        let confusedChoices = {
+            iSayYes: "Yes",
+            iSayMaybe: "Maybe",
+            iSayNo: "No"
+        };
+        let confusedButtons = await Template.ƒS.Menu.getInput(confusedChoices, "choicesCSSclass");
+        switch (confusedButtons) {
+            case confusedChoices.iSayYes:
+                await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "(to yourself) Yes, I'm sure that was my name! I think...");
+                break;
+            case confusedChoices.iSayNo:
+                await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "(to yourself) No, that's definitely wrong... But no matter how hard I try, I can't seem to remember any other name. Guess I'll keep this one for now.");
+                break;
+            case confusedChoices.iSayMaybe:
+                await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "(to yourself) Hmm... maybe it was?... I'm not sure...");
+        }
+        await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "I think my name is " + Template.characters.mainCharacter.name + ".");
+        await Template.ƒS.Speech.tell(Template.characters.companion, "Understood. " + Template.dataForSave.sirMadam + ", how can I be of a-assistance?");
+        await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "Well... I woke up here all alone not long ago. I don't know how I got here or what <i>here</i> even is...");
+        await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "I still feel a little dizzy and can't remember anything from before. ");
+        await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "I've looked around a few rooms but couldn't find anyone else. Maybe you know something?");
+        await Template.ƒS.Speech.tell(Template.characters.companion, "Oh m-my, perhaps you have suffered a head injury? You should go to the infirmary and see a d-doctor immediately! ");
+        await Template.ƒS.Speech.tell(Template.characters.companion, "I will take you there and try to a-answer all your questions on the way. Follow m-me.");
+        return "Scene4";
     }
     Template.Scene3 = Scene3;
 })(Template || (Template = {}));
@@ -405,7 +474,7 @@ var Template;
         Template.ƒS.Speech.hide();
         //await ƒS.Character.show(characters.mainCharacter, characters.mainCharacter.pose.normal, ƒS.positions.bottomcenter);
         //await ƒS.Character.show(characters.companion, characters.companion.pose.happy, ƒS.positions.bottomcenter);
-        await Template.ƒS.Location.show(Template.location.blackBackground); // darker version of room as bg (barely able to see something)
+        await Template.ƒS.Location.show(Template.location.moonStationInteriorDark); // darker version of room as bg (barely able to see something)
         await Template.ƒS.update(0.5);
         await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "Urgh... Where... am I?");
         await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "Owww... my head...");
@@ -426,7 +495,7 @@ var Template;
         }
         if (lookAroundButton) {
             await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "Oh, there's a mirror!");
-            await Template.ƒS.Location.show(Template.location.earthFromMoon); // change BG!!!
+            await Template.ƒS.Location.show(Template.location.mirror); // change BG!!!
             await Template.ƒS.update(0.5);
             await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "Woah I look like an astronaut! Why am I wearing this stuff? ");
             let takeOffHelmet = {

@@ -27,14 +27,49 @@ namespace Template {
       name: "Moon Station Interior",
       background: "Images/Backgrounds/moonStationRoom1.png"
     },
-    earthFromMoon: {
-      name: "Earth from the Moon",
-      background: "Images/Backgrounds/earthFromMoon.png"
+
+    moonStationInteriorDark: {
+      name: "Dark Version of the Moon Station Room",
+      background: "Images/Backgrounds/moonStationRoom-dark.png"
+    },
+
+    mirror: {
+      name: "Mirror",
+      background: "Images/Backgrounds/mirror.png"
+    },
+
+    cornerRobot: {
+      name: "Corner with deactivated Robot",
+      background: "Images/Backgrounds/cornerRobot.png"
+    },
+
+    corner: {
+      name: "Corner without Robot",
+      background: "Images/Backgrounds/corner.png"
+    },
+
+    storageCore: {
+      name: "storage crates with Energy Core",
+      background: "Images/Backgrounds/storageWithCore.png"
+    },
+
+    storage: {
+      name: "storage crates after picking item up",
+      background: "Images/Backgrounds/storage.png"
+    },
+
+    moonHallway: {
+      name: "Mopn Station Hallway",
+      background: "Images/Backgrounds/moonStationHallway.png"
     },
 
     blackBackground: {
       name: "Black Background",
       background: "Images/Backgrounds/blackBackground.png"
+    },
+    earthFromMoon: {
+      name: "Earth from the Moon",
+      background: "Images/Backgrounds/earthFromMoon.png"
     }
   };
 
@@ -43,8 +78,8 @@ namespace Template {
       name: "???"
     },
 
-    inGameNarrator: {
-      name: "Narrator"
+    system: {
+      name: "SYSTEM"
     },
 
     mainCharacter: {

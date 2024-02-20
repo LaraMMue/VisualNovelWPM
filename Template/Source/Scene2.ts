@@ -33,11 +33,14 @@ namespace Template {
         console.log("went left: find energy core first");
         leftFirst = true;
         await ƒS.Speech.tell(characters.mainCharacter, "Something is glowing in that corner!");
-        await ƒS.Location.show(location.blackBackground); // Background!!!
+        await ƒS.Location.show(location.storageCore);
         await ƒS.update(0.5);
         await ƒS.Speech.tell(characters.mainCharacter, "Hm, looks like some kind of mechanical component. Aren't these used to power robots? ");
         await ƒS.Speech.tell(characters.mainCharacter, "What was the name of this thing again?");
         await ƒS.Speech.tell(characters.mainCharacter, "Ugh... my mind is still a little foggy... Anyway, I'll take this with me.");
+        await ƒS.Location.show(location.storage);
+        await ƒS.update(0.5);
+        await ƒS.Speech.tell(characters.system, "Energy core added to your inventory.");
         ƒS.Inventory.add(items.energyCore);
 
         await ƒS.update();
@@ -46,8 +49,6 @@ namespace Template {
         await ƒS.update(0.5);
         await ƒS.Speech.tell(characters.mainCharacter, "Let's go over there too");
 
-
-        //energyCore = true;
 
         break;
 
@@ -58,7 +59,7 @@ namespace Template {
       case directionChoices.right:
         console.log("went right: find robot first");
         await ƒS.Speech.tell(characters.mainCharacter, "Oh what's that over there?");
-        await ƒS.Location.show(location.blackBackground); // Background!!!
+        await ƒS.Location.show(location.cornerRobot);
         await ƒS.update(0.5);
 
         await ƒS.Speech.tell(characters.mainCharacter, "What's this? Looks like a robot of some sorts.");
@@ -86,11 +87,14 @@ namespace Template {
           await ƒS.update(0.5);
           await ƒS.Speech.tell(characters.mainCharacter, "Hmm... Where should I search... Oh!");
           await ƒS.Speech.tell(characters.mainCharacter, "Something is glowing in that corner!");
-          await ƒS.Location.show(location.blackBackground); // Background!!!
+          await ƒS.Location.show(location.storageCore);
           await ƒS.update(0.5);
           await ƒS.Speech.tell(characters.mainCharacter, "Hm, looks like some kind of mechanical component. Maybe it's exactly what I'm looking for!");
           await ƒS.Speech.tell(characters.mainCharacter, "Ugh... I still can't remember the damn name of this thing.");
           await ƒS.Speech.tell(characters.mainCharacter, "I'll just take this with me...");
+          await ƒS.Location.show(location.storage);
+          await ƒS.update(0.5);
+          await ƒS.Speech.tell(characters.system, "Energy core added to your inventory.");
 
           ƒS.Inventory.add(items.energyCore);
           await ƒS.update();
@@ -104,7 +108,7 @@ namespace Template {
 
     if (leftFirst == true) {
       await ƒS.Speech.tell(characters.mainCharacter, "Oh what's that over there?");
-      await ƒS.Location.show(location.blackBackground); // Background!!!
+      await ƒS.Location.show(location.cornerRobot); // Background!!!
       await ƒS.update(0.5);
 
       await ƒS.Speech.tell(characters.mainCharacter, "What's this? Looks like a robot of some sorts.");
@@ -136,7 +140,7 @@ namespace Template {
 
 
     } else {
-      await ƒS.Location.show(location.blackBackground); // Background!!!
+      await ƒS.Location.show(location.cornerRobot);
       await ƒS.update(0.5);
       await ƒS.Speech.tell(characters.mainCharacter, "Let's see if this is the right one.");
 

@@ -19,11 +19,39 @@ declare namespace Template {
             name: string;
             background: string;
         };
-        earthFromMoon: {
+        moonStationInteriorDark: {
+            name: string;
+            background: string;
+        };
+        mirror: {
+            name: string;
+            background: string;
+        };
+        cornerRobot: {
+            name: string;
+            background: string;
+        };
+        corner: {
+            name: string;
+            background: string;
+        };
+        storageCore: {
+            name: string;
+            background: string;
+        };
+        storage: {
+            name: string;
+            background: string;
+        };
+        moonHallway: {
             name: string;
             background: string;
         };
         blackBackground: {
+            name: string;
+            background: string;
+        };
+        earthFromMoon: {
             name: string;
             background: string;
         };
@@ -32,7 +60,7 @@ declare namespace Template {
         narrator: {
             name: string;
         };
-        inGameNarrator: {
+        system: {
             name: string;
         };
         mainCharacter: {

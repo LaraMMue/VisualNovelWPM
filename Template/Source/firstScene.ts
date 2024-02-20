@@ -6,7 +6,7 @@ namespace Template {
 
     //await ƒS.Character.show(characters.mainCharacter, characters.mainCharacter.pose.normal, ƒS.positions.bottomcenter);
     //await ƒS.Character.show(characters.companion, characters.companion.pose.happy, ƒS.positions.bottomcenter);
-    await ƒS.Location.show(location.blackBackground); // darker version of room as bg (barely able to see something)
+    await ƒS.Location.show(location.moonStationInteriorDark); // darker version of room as bg (barely able to see something)
     await ƒS.update(0.5);
     await ƒS.Speech.tell(characters.mainCharacter, "Urgh... Where... am I?");
     await ƒS.Speech.tell(characters.mainCharacter, "Owww... my head...");
@@ -32,7 +32,7 @@ namespace Template {
 
     if (lookAroundButton) {
       await ƒS.Speech.tell(characters.mainCharacter, "Oh, there's a mirror!");
-      await ƒS.Location.show(location.earthFromMoon); // change BG!!!
+      await ƒS.Location.show(location.mirror); // change BG!!!
       await ƒS.update(0.5);
       await ƒS.Speech.tell(characters.mainCharacter, "Woah I look like an astronaut! Why am I wearing this stuff? ");
 
