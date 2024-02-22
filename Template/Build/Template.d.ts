@@ -57,6 +57,14 @@ declare namespace Template {
             name: string;
             background: string;
         };
+        commsOff: {
+            name: string;
+            background: string;
+        };
+        comms: {
+            name: string;
+            background: string;
+        };
         blackBackground: {
             name: string;
             background: string;
@@ -146,6 +154,9 @@ declare namespace Template {
 }
 declare namespace Template {
     function Scene4(): ƒS.SceneReturn;
+}
+declare namespace Template {
+    function Scene5(): ƒS.SceneReturn;
 }
 declare namespace Template {
     function tutorial(): ƒS.SceneReturn;

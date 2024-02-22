@@ -36,7 +36,7 @@ namespace Template {
                 await ƒS.Character.hide(characters.companion);
                 await ƒS.Character.show(characters.companion, characters.companion.pose.sad, ƒS.positions.bottomcenter);
                 await ƒS.update(0.5);
-                await ƒS.Speech.tell(characters.companion, "Oh okay...");
+                await ƒS.Speech.tell(characters.companion, "Oh okay... Sorry about that...");
                 console.log(dataForSave.buddyScore);
                 break;
         }
@@ -88,13 +88,75 @@ namespace Template {
         await ƒS.Speech.tell(characters.mainCharacter, "I guess that let's me rule out the possibility of being a doctor? Judging from my outfit I could be an astronaut or something similar.");
         await ƒS.Speech.tell(characters.mainCharacter, "I mean we <i>are</i> in a research station on the moon, so... But then again, the researchers might also use spacesuits.");
         await ƒS.Speech.tell(characters.mainCharacter, "Maybe I'm a researcher then? Argh, I really can't figure it out. I'll just try to find some more information.");
-        await ƒS.Speech.tell(characters.mainCharacter, "Like on this computer for example, I should be able to find some medical records of the people that worked here right? If it turns on... which...");
+        await ƒS.Speech.tell(characters.mainCharacter, "Like on this computer for example, I should be able to find some medical records of the people that worked here, right? If it turns on... which...");
         await ƒS.Speech.tell(characters.mainCharacter, "... it doesn't, of course... great... would have been too easy...");
         await ƒS.Speech.tell(characters.mainCharacter, "Maybe something interesting on these papers?");
 
         ƒS.Inventory.add(items.novelInfirmaryNotes);
         await ƒS.update();
         await ƒS.Inventory.open();
+
+        await ƒS.Speech.tell(characters.mainCharacter, "...");
+        await ƒS.Speech.tell(characters.mainCharacter, "Hm this seems to be about some kind of disease... what are these notes on the side about chips?");
+
+        await ƒS.Character.animate(characters.companion, characters.companion.pose.normal, characterWalkIn());
+        await ƒS.Speech.tell(characters.companion, "I must a-apologize " + dataForSave.sirMadam + ", it appears there is no me-medical staff here today.");
+        await ƒS.Speech.tell(characters.companion, "This is a very unusual occurrence and it seems there are some i-issues with the stations internal network as well, as I have been unable to con-contact the Alpha-7 help desk.");
+        await ƒS.Speech.tell(characters.companion, "I will have to visit the communications center on the other s-side of the building to ask about the situation.");
+        await ƒS.Speech.tell(characters.companion, "I do not want to leave y-you alone for long in your current st-state so I have to ask you to accompany me there.");
+        await ƒS.Speech.tell(characters.companion, "Is that o-okay with you " + dataForSave.sirMadam + " " + characters.mainCharacter.name + "? How are you feeling?");
+
+
+        let healthChoices = {
+            feelBetter: "Better!",
+            justGo: "Let's just go!"
+        };
+
+        let healthChoiceButtons = await ƒS.Menu.getInput(healthChoices, "choicesCSSclass");
+
+
+        switch (healthChoiceButtons) {
+            case healthChoices.feelBetter:
+                dataForSave.buddyScore += 1;
+                await ƒS.Speech.tell(characters.mainCharacter, "Sure! I feel much better already. Let's go!");
+                await ƒS.Character.hide(characters.companion);
+                await ƒS.Character.show(characters.companion, characters.companion.pose.happy, ƒS.positions.bottomcenter);
+                await ƒS.update(0.5);
+                await ƒS.Speech.tell(characters.companion, "I'm glad to hear that!");
+                console.log(dataForSave.buddyScore);
+                break;
+            case healthChoices.justGo:
+                dataForSave.buddyScore -= 1;
+                await ƒS.Speech.tell(characters.mainCharacter, "As if you care how I feel, you're just a robot. Let's just go... ugh feels like all I've been doing is walking around.");
+                await ƒS.Character.hide(characters.companion);
+                await ƒS.Character.show(characters.companion, characters.companion.pose.sad, ƒS.positions.bottomcenter);
+                await ƒS.update(0.5);
+                await ƒS.Speech.tell(characters.companion, "I am truly s-sorry for the inconvenience...");
+                await ƒS.Speech.tell(characters.companion, "Are you sure you will be a-alright? ");
+                await ƒS.Speech.tell(characters.mainCharacter, "Yeah yeah it's fine.");
+                await ƒS.Speech.tell(characters.companion, "If you wish, we can r-rest a bit lo...");
+                await ƒS.Speech.tell(characters.mainCharacter, "I SAID IT'S FINE.");
+                await ƒS.Character.hide(characters.companion);
+                await ƒS.Character.show(characters.companion, characters.companion.pose.scared, ƒS.positions.bottomcenter);
+                await ƒS.update(0.5);
+                await ƒS.Speech.tell(characters.companion, "BZZ BZZ!");
+                await ƒS.Speech.tell(characters.mainCharacter, "Let's go already...");
+                await ƒS.Character.hide(characters.companion);
+                await ƒS.Character.show(characters.companion, characters.companion.pose.sad, ƒS.positions.bottomcenter);
+                await ƒS.update(0.5);
+                await ƒS.Speech.tell(characters.companion, "O-of course " + dataForSave.sirMadam + ".");
+                console.log(dataForSave.buddyScore);
+                break;
+        }
+
+        await ƒS.Character.hide(characters.companion);
+        await ƒS.Location.show(location.moonHallway);
+        await ƒS.update(0.5);
+
+        await ƒS.Speech.tell(characters.mainCharacter, "What if there is no one at the communications center either?");
+        await ƒS.Speech.tell(characters.companion, "I'm su-sure we will find someone that can give us a logical explanation to a-all this.");
+
+        return "Scene5";
 
 
 

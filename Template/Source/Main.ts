@@ -77,6 +77,16 @@ namespace Template {
       background: "Images/Backgrounds/infirmary.png"
     },
 
+    commsOff: {
+      name: "Communications Center turned off",
+      background: "Images/Backgrounds/commsOff.png"
+    },
+
+    comms: {
+      name: "Communications Center",
+      background: "Images/Backgrounds/comms.png"
+    },
+
     blackBackground: {
       name: "Black Background",
       background: "Images/Backgrounds/blackBackground.png"
@@ -138,7 +148,7 @@ namespace Template {
     return {
       start: { translation: ƒS.positionPercent(50, 100) },
       end: { translation: ƒS.positionPercent(200, 100) },
-      duration: 4,
+      duration: 2,
       playmode: ƒS.ANIMATION_PLAYMODE.PLAYONCE
     }
   };
@@ -147,7 +157,7 @@ namespace Template {
     return {
       start: { translation: ƒS.positionPercent(200, 100) },
       end: { translation: ƒS.positionPercent(50, 100) },
-      duration: 4,
+      duration: 2,
       playmode: ƒS.ANIMATION_PLAYMODE.PLAYONCE
     }
   };
@@ -309,7 +319,8 @@ namespace Template {
       { id: "GameOver1", scene: gameOver1, name: "Game Over 1" },
       { id: "Scene2", scene: Scene2, name: "Find Robot" },
       { id: "Scene3", scene: Scene3, name: "Meet Robot" },
-      { id: "Scene4", scene: Scene4, name: "Scene4" }
+      { id: "Scene4", scene: Scene4, name: "Scene4" },
+      { id: "Scene5", scene: Scene5, name: "Scene5" }
     ];
 
     let uiElement: HTMLElement = document.querySelector("[type=interface]");

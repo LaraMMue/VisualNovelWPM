@@ -61,6 +61,14 @@ var Template;
             name: "Infirmary",
             background: "Images/Backgrounds/infirmary.png"
         },
+        commsOff: {
+            name: "Communications Center turned off",
+            background: "Images/Backgrounds/commsOff.png"
+        },
+        comms: {
+            name: "Communications Center",
+            background: "Images/Backgrounds/comms.png"
+        },
         blackBackground: {
             name: "Black Background",
             background: "Images/Backgrounds/blackBackground.png"
@@ -115,7 +123,7 @@ var Template;
         return {
             start: { translation: Template.ƒS.positionPercent(50, 100) },
             end: { translation: Template.ƒS.positionPercent(200, 100) },
-            duration: 4,
+            duration: 2,
             playmode: Template.ƒS.ANIMATION_PLAYMODE.PLAYONCE
         };
     }
@@ -125,7 +133,7 @@ var Template;
         return {
             start: { translation: Template.ƒS.positionPercent(200, 100) },
             end: { translation: Template.ƒS.positionPercent(50, 100) },
-            duration: 4,
+            duration: 2,
             playmode: Template.ƒS.ANIMATION_PLAYMODE.PLAYONCE
         };
     }
@@ -267,7 +275,8 @@ var Template;
             { id: "GameOver1", scene: Template.gameOver1, name: "Game Over 1" },
             { id: "Scene2", scene: Template.Scene2, name: "Find Robot" },
             { id: "Scene3", scene: Template.Scene3, name: "Meet Robot" },
-            { id: "Scene4", scene: Template.Scene4, name: "Scene4" }
+            { id: "Scene4", scene: Template.Scene4, name: "Scene4" },
+            { id: "Scene5", scene: Template.Scene5, name: "Scene5" }
         ];
         let uiElement = document.querySelector("[type=interface]");
         Template.dataForSave = Template.ƒS.Progress.setData(Template.dataForSave, uiElement);
@@ -505,7 +514,7 @@ var Template;
                 await Template.ƒS.Character.hide(Template.characters.companion);
                 await Template.ƒS.Character.show(Template.characters.companion, Template.characters.companion.pose.sad, Template.ƒS.positions.bottomcenter);
                 await Template.ƒS.update(0.5);
-                await Template.ƒS.Speech.tell(Template.characters.companion, "Oh okay...");
+                await Template.ƒS.Speech.tell(Template.characters.companion, "Oh okay... Sorry about that...");
                 console.log(Template.dataForSave.buddyScore);
                 break;
         }
@@ -548,14 +557,113 @@ var Template;
         await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "I guess that let's me rule out the possibility of being a doctor? Judging from my outfit I could be an astronaut or something similar.");
         await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "I mean we <i>are</i> in a research station on the moon, so... But then again, the researchers might also use spacesuits.");
         await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "Maybe I'm a researcher then? Argh, I really can't figure it out. I'll just try to find some more information.");
-        await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "Like on this computer for example, I should be able to find some medical records of the people that worked here right? If it turns on... which...");
+        await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "Like on this computer for example, I should be able to find some medical records of the people that worked here, right? If it turns on... which...");
         await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "... it doesn't, of course... great... would have been too easy...");
         await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "Maybe something interesting on these papers?");
         Template.ƒS.Inventory.add(Template.items.novelInfirmaryNotes);
         await Template.ƒS.update();
         await Template.ƒS.Inventory.open();
+        await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "...");
+        await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "Hm this seems to be about some kind of disease... what are these notes on the side about chips?");
+        await Template.ƒS.Character.animate(Template.characters.companion, Template.characters.companion.pose.normal, Template.characterWalkIn());
+        await Template.ƒS.Speech.tell(Template.characters.companion, "I must a-apologize " + Template.dataForSave.sirMadam + ", it appears there is no me-medical staff here today.");
+        await Template.ƒS.Speech.tell(Template.characters.companion, "This is a very unusual occurrence and it seems there are some i-issues with the stations internal network as well, as I have been unable to con-contact the Alpha-7 help desk.");
+        await Template.ƒS.Speech.tell(Template.characters.companion, "I will have to visit the communications center on the other s-side of the building to ask about the situation.");
+        await Template.ƒS.Speech.tell(Template.characters.companion, "I do not want to leave y-you alone for long in your current st-state so I have to ask you to accompany me there.");
+        await Template.ƒS.Speech.tell(Template.characters.companion, "Is that o-okay with you " + Template.dataForSave.sirMadam + " " + Template.characters.mainCharacter.name + "? How are you feeling?");
+        let healthChoices = {
+            feelBetter: "Better!",
+            justGo: "Let's just go!"
+        };
+        let healthChoiceButtons = await Template.ƒS.Menu.getInput(healthChoices, "choicesCSSclass");
+        switch (healthChoiceButtons) {
+            case healthChoices.feelBetter:
+                Template.dataForSave.buddyScore += 1;
+                await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "Sure! I feel much better already. Let's go!");
+                await Template.ƒS.Character.hide(Template.characters.companion);
+                await Template.ƒS.Character.show(Template.characters.companion, Template.characters.companion.pose.happy, Template.ƒS.positions.bottomcenter);
+                await Template.ƒS.update(0.5);
+                await Template.ƒS.Speech.tell(Template.characters.companion, "I'm glad to hear that!");
+                console.log(Template.dataForSave.buddyScore);
+                break;
+            case healthChoices.justGo:
+                Template.dataForSave.buddyScore -= 1;
+                await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "As if you care how I feel, you're just a robot. Let's just go... ugh feels like all I've been doing is walking around.");
+                await Template.ƒS.Character.hide(Template.characters.companion);
+                await Template.ƒS.Character.show(Template.characters.companion, Template.characters.companion.pose.sad, Template.ƒS.positions.bottomcenter);
+                await Template.ƒS.update(0.5);
+                await Template.ƒS.Speech.tell(Template.characters.companion, "I am truly s-sorry for the inconvenience...");
+                await Template.ƒS.Speech.tell(Template.characters.companion, "Are you sure you will be a-alright? ");
+                await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "Yeah yeah it's fine.");
+                await Template.ƒS.Speech.tell(Template.characters.companion, "If you wish, we can r-rest a bit lo...");
+                await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "I SAID IT'S FINE.");
+                await Template.ƒS.Character.hide(Template.characters.companion);
+                await Template.ƒS.Character.show(Template.characters.companion, Template.characters.companion.pose.scared, Template.ƒS.positions.bottomcenter);
+                await Template.ƒS.update(0.5);
+                await Template.ƒS.Speech.tell(Template.characters.companion, "BZZ BZZ!");
+                await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "Let's go already...");
+                await Template.ƒS.Character.hide(Template.characters.companion);
+                await Template.ƒS.Character.show(Template.characters.companion, Template.characters.companion.pose.sad, Template.ƒS.positions.bottomcenter);
+                await Template.ƒS.update(0.5);
+                await Template.ƒS.Speech.tell(Template.characters.companion, "O-of course " + Template.dataForSave.sirMadam + ".");
+                console.log(Template.dataForSave.buddyScore);
+                break;
+        }
+        await Template.ƒS.Character.hide(Template.characters.companion);
+        await Template.ƒS.Location.show(Template.location.moonHallway);
+        await Template.ƒS.update(0.5);
+        await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "What if there is no one at the communications center either?");
+        await Template.ƒS.Speech.tell(Template.characters.companion, "I'm su-sure we will find someone that can give us a logical explanation to a-all this.");
+        return "Scene5";
     }
     Template.Scene4 = Scene4;
+})(Template || (Template = {}));
+var Template;
+(function (Template) {
+    async function Scene5() {
+        console.log("FudgeStory Scene 5 is starting");
+        await Template.ƒS.Location.show(Template.location.blackBackground);
+        await Template.ƒS.update(0.5);
+        await Template.ƒS.Speech.tell(Template.characters.companion, "Ah, we're here!");
+        await Template.ƒS.Location.show(Template.location.commsOff);
+        await Template.ƒS.update(0.5);
+        await Template.ƒS.Speech.tell(Template.characters.companion, "Welcome to the com-communications center of Alpha-7! This place serves as our lifeline to Earth and the o-other lunar facilities.");
+        await Template.ƒS.Speech.tell(Template.characters.companion, "Coordinating supply sh-shipments, exchanging s-scientific findings and providing all k-kinds of organization services for t-those stationed on Alpha-7 - it all happens h-here.");
+        await Template.ƒS.Speech.tell(Template.characters.companion, "Our dedicated team o-of humand and artificial intelligence specialists works t-tirelessly around the clock to ensure smooth o-operations and safety within the research station and they will always be there...");
+        await Template.ƒS.Speech.tell(Template.characters.companion, "...");
+        await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "No one around...");
+        await Template.ƒS.Speech.tell(Template.characters.companion, "...");
+        await Template.ƒS.Speech.tell(Template.characters.companion, "There must be s-someone here. There is always at least one technical support worker in the center to m-make sure the computers and everything else works...");
+        await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "But I don't see anyone. Nor have I seen anyone the entire way here, or on the way to the infirmary.");
+        await Template.ƒS.Speech.tell(Template.characters.companion, "...");
+        await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "How many people are usually stationed at Alpha-7?");
+        await Template.ƒS.Speech.tell(Template.characters.companion, "329... according to my last r-record...");
+        await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "329! Shouldn't we have run into a few of them by now?");
+        let peopleWhereChoices = {
+            how: "How can this be?",
+            hiding: "Are you hiding something?"
+        };
+        let peopleWhereButtons = await Template.ƒS.Menu.getInput(peopleWhereChoices, "choicesCSSclass");
+        switch (peopleWhereButtons) {
+            case peopleWhereChoices.how:
+                await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "How can 329 people just disappear? And how come you don't know anything about this?");
+                await Template.ƒS.Speech.tell(Template.characters.companion, "");
+                console.log("Buddy Score: " + Template.dataForSave.buddyScore);
+                break;
+            case peopleWhereChoices.hiding:
+                Template.dataForSave.buddyScore -= 1;
+                await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "How can 329 people just disappear? Are you hiding something from me?");
+                await Template.ƒS.Character.hide(Template.characters.companion);
+                await Template.ƒS.Character.show(Template.characters.companion, Template.characters.companion.pose.angry, Template.ƒS.positions.bottomcenter);
+                await Template.ƒS.update(0.5);
+                await Template.ƒS.Speech.tell(Template.characters.companion, "N-no " + Template.dataForSave.sirMadam + ", why would I h-hide anything from you? I am just as c-confused as you are!");
+                console.log(Template.dataForSave.buddyScore);
+                break;
+        }
+        await Template.ƒS.Speech.tell(Template.characters.companion, "");
+        await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "");
+    }
+    Template.Scene5 = Scene5;
 })(Template || (Template = {}));
 var Template;
 (function (Template) {
