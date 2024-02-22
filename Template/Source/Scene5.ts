@@ -12,11 +12,11 @@ namespace Template {
 
         await ƒS.Speech.tell(characters.companion, "Welcome to the com-communications center of Alpha-7! This place serves as our lifeline to Earth and the o-other lunar facilities.");
         await ƒS.Speech.tell(characters.companion, "Coordinating supply sh-shipments, exchanging s-scientific findings and providing all k-kinds of organization services for t-those stationed on Alpha-7 - it all happens h-here.");
-        await ƒS.Speech.tell(characters.companion, "Our dedicated team o-of humand and artificial intelligence specialists works t-tirelessly around the clock to ensure smooth o-operations and safety within the research station and they will always be there...");
+        await ƒS.Speech.tell(characters.companion, "Our dedicated team o-of human and artificial intelligence specialists works t-tirelessly around the clock to ensure smooth o-operations and safety within the research station and they will always be there to...");
         await ƒS.Speech.tell(characters.companion, "...");
         await ƒS.Speech.tell(characters.mainCharacter, "No one around...");
         await ƒS.Speech.tell(characters.companion, "...");
-        await ƒS.Speech.tell(characters.companion, "There must be s-someone here. There is always at least one technical support worker in the center to m-make sure the computers and everything else works...");
+        await ƒS.Speech.tell(characters.companion, "There must be s-someone here! There is always at least one technical support worker in the center to m-make sure the computers and everything else works...");
         await ƒS.Speech.tell(characters.mainCharacter, "But I don't see anyone. Nor have I seen anyone the entire way here, or on the way to the infirmary.");
         await ƒS.Speech.tell(characters.companion, "...");
         await ƒS.Speech.tell(characters.mainCharacter, "How many people are usually stationed at Alpha-7?");
