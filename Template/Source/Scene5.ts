@@ -47,7 +47,12 @@ namespace Template {
                 await ƒS.Speech.tell(characters.companion, "N-no " + dataForSave.sirMadam + ", why would I h-hide anything from you? I am just as c-confused as you are!");
                 console.log(dataForSave.buddyScore);
                 break;
+
+
         }
+
+        await ƒS.Location.show(location.comms);
+        await ƒS.update(0.5);
 
 
         await ƒS.Speech.tell(characters.companion, "");

@@ -76,6 +76,22 @@ var Template;
         earthFromMoon: {
             name: "Earth from the Moon",
             background: "Images/Backgrounds/earthFromMoon.png"
+        },
+        shipHangar: {
+            name: "Spaceship Parking Spot",
+            background: "Images/Backgrounds/shipHangar.png"
+        },
+        cockpit: {
+            name: "Spaceship Cockpit",
+            background: "Images/Background/spaceship_cockpit.png"
+        },
+        landing: {
+            name: "Successful Landing",
+            background: "Images/Background/landing.png"
+        },
+        finalRoom: {
+            name: "Mother's home",
+            background: "Images/Backgrounds/finalRoom_mother.png"
         }
     };
     Template.characters = {
@@ -143,7 +159,7 @@ var Template;
         energyCore: {
             name: "Strange Energy Core",
             description: "An electric device used to power certain robots",
-            image: "Images/Items/itemTest.png",
+            image: "Images/Items/energyCore.png",
             static: false
         },
         novelInfirmaryNotes: {
@@ -555,7 +571,7 @@ var Template;
         await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "Oh that must be blood for transfusions! They all have such a weird color though, it doesn't even look like blood... Or maybe it's just rotten?");
         await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "What else... a bunch of tools, bottles and other stuff that I don't know.");
         await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "I guess that let's me rule out the possibility of being a doctor? Judging from my outfit I could be an astronaut or something similar.");
-        await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "I mean we <i>are</i> in a research station on the moon, so... But then again, the researchers might also use spacesuits.");
+        await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "I mean we <i>are</i> in a research station on the moon after all... But then again, the researchers might also use spacesuits.");
         await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "Maybe I'm a researcher then? Argh, I really can't figure it out. I'll just try to find some more information.");
         await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "Like on this computer for example, I should be able to find some medical records of the people that worked here, right? If it turns on... which...");
         await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "... it doesn't, of course... great... would have been too easy...");
@@ -660,6 +676,8 @@ var Template;
                 console.log(Template.dataForSave.buddyScore);
                 break;
         }
+        await Template.ƒS.Location.show(Template.location.comms);
+        await Template.ƒS.update(0.5);
         await Template.ƒS.Speech.tell(Template.characters.companion, "");
         await Template.ƒS.Speech.tell(Template.characters.mainCharacter, "");
     }

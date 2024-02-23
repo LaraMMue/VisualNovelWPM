@@ -86,7 +86,7 @@ namespace Template {
         await ƒS.Speech.tell(characters.mainCharacter, "Oh that must be blood for transfusions! They all have such a weird color though, it doesn't even look like blood... Or maybe it's just rotten?");
         await ƒS.Speech.tell(characters.mainCharacter, "What else... a bunch of tools, bottles and other stuff that I don't know.");
         await ƒS.Speech.tell(characters.mainCharacter, "I guess that let's me rule out the possibility of being a doctor? Judging from my outfit I could be an astronaut or something similar.");
-        await ƒS.Speech.tell(characters.mainCharacter, "I mean we <i>are</i> in a research station on the moon, so... But then again, the researchers might also use spacesuits.");
+        await ƒS.Speech.tell(characters.mainCharacter, "I mean we <i>are</i> in a research station on the moon after all... But then again, the researchers might also use spacesuits.");
         await ƒS.Speech.tell(characters.mainCharacter, "Maybe I'm a researcher then? Argh, I really can't figure it out. I'll just try to find some more information.");
         await ƒS.Speech.tell(characters.mainCharacter, "Like on this computer for example, I should be able to find some medical records of the people that worked here, right? If it turns on... which...");
         await ƒS.Speech.tell(characters.mainCharacter, "... it doesn't, of course... great... would have been too easy...");

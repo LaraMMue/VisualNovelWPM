@@ -94,6 +94,26 @@ namespace Template {
     earthFromMoon: {
       name: "Earth from the Moon",
       background: "Images/Backgrounds/earthFromMoon.png"
+    },
+
+    shipHangar: {
+      name: "Spaceship Parking Spot",
+      background: "Images/Backgrounds/shipHangar.png"
+    },
+
+    cockpit: {
+      name: "Spaceship Cockpit",
+      background: "Images/Background/spaceship_cockpit.png"
+    },
+
+    landing: {
+      name: "Successful Landing",
+      background: "Images/Background/landing.png"
+    },
+
+    finalRoom: {
+      name: "Mother's home",
+      background: "Images/Backgrounds/finalRoom_mother.png"
     }
   };
 
@@ -166,7 +186,7 @@ namespace Template {
     energyCore: {
       name: "Strange Energy Core",
       description: "An electric device used to power certain robots",
-      image: "Images/Items/itemTest.png",
+      image: "Images/Items/energyCore.png",
       static: false
     },
 

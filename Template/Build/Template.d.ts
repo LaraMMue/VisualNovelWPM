@@ -73,6 +73,22 @@ declare namespace Template {
             name: string;
             background: string;
         };
+        shipHangar: {
+            name: string;
+            background: string;
+        };
+        cockpit: {
+            name: string;
+            background: string;
+        };
+        landing: {
+            name: string;
+            background: string;
+        };
+        finalRoom: {
+            name: string;
+            background: string;
+        };
     };
     let characters: {
         narrator: {
