@@ -1,4 +1,4 @@
-namespace Template {
+namespace Nexirium {
   export import ƒ = FudgeCore;
   export import ƒS = FudgeStory;
 
@@ -21,7 +21,9 @@ namespace Template {
 
   export let sound = {
     // SFX
-    soundName: "Pfad (relativ) zB Audio/sound.mp3"
+    soundName: "Pfad (relativ) zB Audio/sound.mp3",
+
+    alarm: "Sound/SFX/SpaceshipAlarm.mp3"
 
 
   };
@@ -103,7 +105,7 @@ namespace Template {
 
     cockpit: {
       name: "Spaceship Cockpit",
-      background: "Images/Background/spaceship_cockpit.png"
+      background: "Images/Backgrounds/spaceship_cockpit.png"
     },
 
     landing: {
@@ -114,11 +116,16 @@ namespace Template {
     finalRoom: {
       name: "Mother's home",
       background: "Images/Backgrounds/finalRoom_mother.png"
+    },
+
+    whiteBG: {
+      name: "white",
+      background: "Images/Backgrounds/whiteBackground.png"
     }
   };
 
   export let characters = {
-    narrator: {
+    mother: {
       name: "???"
     },
 
@@ -161,6 +168,18 @@ namespace Template {
         happy: "",
         upset: ""
       }
+    },
+
+    commsVoice: {
+      name: "Robotic Voice"
+    },
+
+    child: {
+      name: "A child's Voice"
+    },
+
+    grandpa: {
+      name: "Old Man"
     }
   };
 
@@ -185,17 +204,81 @@ namespace Template {
   export let items = {
     energyCore: {
       name: "Strange Energy Core",
-      description: "An electric device used to power certain robots",
+      description: " An electric device used to power certain robots",
       image: "Images/Items/energyCore.png",
       static: false
     },
 
     novelInfirmaryNotes: {
       name: "Paper Notes",
-      description: "Notes on a piece of paper you found in the infirmary",
+      description: " A piece of paper with a patient list and scribbled notes",
       image: "Images/Items/novel1-infirmaryNotes.png",
       static: true
+    },
+
+    notice: {
+      name: "NexirTech Notice",
+      description: " A NexirTech notice about robot malfunctions",
+      image: "Images/Items/novel2-notice.png",
+      static: true
+    },
+
+    attackNotice: {
+      name: "NexirTech Attack Notice",
+      description: " A NexirTech notice about robot attacks",
+      image: "Images/Items/novel3-attacks.png",
+      static: true
+    },
+
+    petition: {
+      name: "Petition",
+      description: " A petition against NexirTech",
+      image: "Images/Items/novel4-petition.png",
+      static: true
+    },
+    shutdown: {
+      name: "Shutdown Notice",
+      description: " A notice about the NexirNet Shutdown",
+      image: "Images/Items/novel5-shutdown.png",
+      static: true
+    },
+    governmentNotice: {
+      name: "Government Notice",
+      description: " A government notice about the data wipe",
+      image: "Images/Items/novel6-dataWipe.png",
+      static: true
+    },
+    diary1: {
+      name: "Diary File 1",
+      description: " A diary written by an Alpha-7 worker - Part 1",
+      image: "Images/Items/novel7-diary1.png",
+      static: true
+    },
+
+    diary2: {
+      name: "Diary File 2",
+      description: " A diary written by an Alpha-7 worker - Part 2",
+      image: "Images/Items/novel8-diary2.png",
+      static: true
+    },
+
+    diary3: {
+      name: "Diary File 3",
+      description: " A diary written by an Alpha-7 worker - Part 3",
+      image: "Images/Items/novel9-diary3.png",
+      static: true
+    },
+
+    manual: {
+      name: "Spaceship Manual",
+      description: " A manual written like a riddle",
+      image: "Images/Items/manual.png"
+
     }
+
+
+
+
   };
 
   /*export function useItem(name: string) {
@@ -208,7 +291,10 @@ namespace Template {
     takenOffHelmet: false,
     buddyScore: 5,
     sirMadam: "",
-    momDad: ""
+    momDad: "",
+    sonDaughter: "",
+    wrongCable: false,
+    nameMother: "",
   };
 
 
@@ -340,7 +426,16 @@ namespace Template {
       { id: "Scene2", scene: Scene2, name: "Find Robot" },
       { id: "Scene3", scene: Scene3, name: "Meet Robot" },
       { id: "Scene4", scene: Scene4, name: "Scene4" },
-      { id: "Scene5", scene: Scene5, name: "Scene5" }
+      { id: "Scene5", scene: Scene5, name: "Scene5" },
+      { id: "Scene6", scene: Scene6, name: "Scene6" },
+      { id: "Scene7", scene: Scene7, name: "Scene7" },
+      { id: "GameOver2", scene: GameOver2, name: "GameOver2" },
+      { id: "Scene8", scene: Scene8, name: "Scene8" },
+      { id: "Scene9", scene: Scene9, name: "Scene9" },
+      { id: "GoodEnding", scene: GoodEnding, name: "Good Ending" },
+      { id: "BadEnding", scene: BadEnding, name: "Bad Ending" },
+
+
     ];
 
     let uiElement: HTMLElement = document.querySelector("[type=interface]");

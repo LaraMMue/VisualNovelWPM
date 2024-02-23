@@ -1,4 +1,4 @@
-namespace Template {
+namespace Nexirium {
   export async function Scene2(): ƒS.SceneReturn {
     console.log("Scene 2 starting");
 

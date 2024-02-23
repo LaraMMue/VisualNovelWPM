@@ -1,4 +1,4 @@
-namespace Template {
+namespace Nexirium {
   export async function firstScene(): ƒS.SceneReturn {
     console.log("First Scene starting");
 
@@ -27,11 +27,6 @@ namespace Template {
     };
 
     let lookAroundButton = await ƒS.Menu.getInput(lookAround, "choicesCSSclass");
-    let clickedLookAroundButton: boolean;
-
-    if (clickedLookAroundButton) {
-      delete lookAround.interactLookAround;
-    }
 
 
     if (lookAroundButton) {

@@ -1,4 +1,13 @@
-declare namespace Template {
+declare namespace Nexirium {
+    function BadEnding(): ƒS.SceneReturn;
+}
+declare namespace Nexirium {
+    function Ending(): ƒS.SceneReturn;
+}
+declare namespace Nexirium {
+    function GoodEnding(): ƒS.SceneReturn;
+}
+declare namespace Nexirium {
     export import ƒ = FudgeCore;
     export import ƒS = FudgeStory;
     let transition: {
@@ -15,6 +24,7 @@ declare namespace Template {
     };
     let sound: {
         soundName: string;
+        alarm: string;
     };
     let music: {
         musicName: string;
@@ -89,9 +99,13 @@ declare namespace Template {
             name: string;
             background: string;
         };
+        whiteBG: {
+            name: string;
+            background: string;
+        };
     };
     let characters: {
-        narrator: {
+        mother: {
             name: string;
         };
         system: {
@@ -130,6 +144,15 @@ declare namespace Template {
                 upset: string;
             };
         };
+        commsVoice: {
+            name: string;
+        };
+        child: {
+            name: string;
+        };
+        grandpa: {
+            name: string;
+        };
     };
     function characterLeaveScreen(): ƒS.AnimationDefinition;
     function characterWalkIn(): ƒS.AnimationDefinition;
@@ -146,6 +169,59 @@ declare namespace Template {
             image: string;
             static: boolean;
         };
+        notice: {
+            name: string;
+            description: string;
+            image: string;
+            static: boolean;
+        };
+        attackNotice: {
+            name: string;
+            description: string;
+            image: string;
+            static: boolean;
+        };
+        petition: {
+            name: string;
+            description: string;
+            image: string;
+            static: boolean;
+        };
+        shutdown: {
+            name: string;
+            description: string;
+            image: string;
+            static: boolean;
+        };
+        governmentNotice: {
+            name: string;
+            description: string;
+            image: string;
+            static: boolean;
+        };
+        diary1: {
+            name: string;
+            description: string;
+            image: string;
+            static: boolean;
+        };
+        diary2: {
+            name: string;
+            description: string;
+            image: string;
+            static: boolean;
+        };
+        diary3: {
+            name: string;
+            description: string;
+            image: string;
+            static: boolean;
+        };
+        manual: {
+            name: string;
+            description: string;
+            image: string;
+        };
     };
     let dataForSave: {
         nameMC: string;
@@ -153,33 +229,51 @@ declare namespace Template {
         buddyScore: number;
         sirMadam: string;
         momDad: string;
+        sonDaughter: string;
+        wrongCable: boolean;
+        nameMother: string;
     };
     let gameMenu: ƒS.Menu;
     function increaseSound(): void;
     function decreaseVolume(): void;
     function displayCredits(): void;
 }
-declare namespace Template {
+declare namespace Nexirium {
     function Scene(): ƒS.SceneReturn;
 }
-declare namespace Template {
+declare namespace Nexirium {
     function Scene2(): ƒS.SceneReturn;
 }
-declare namespace Template {
+declare namespace Nexirium {
     function Scene3(): ƒS.SceneReturn;
 }
-declare namespace Template {
+declare namespace Nexirium {
     function Scene4(): ƒS.SceneReturn;
 }
-declare namespace Template {
+declare namespace Nexirium {
     function Scene5(): ƒS.SceneReturn;
 }
-declare namespace Template {
+declare namespace Nexirium {
+    function Scene6(): ƒS.SceneReturn;
+}
+declare namespace Nexirium {
+    function Scene7(): ƒS.SceneReturn;
+}
+declare namespace Nexirium {
+    function Scene8(): ƒS.SceneReturn;
+}
+declare namespace Nexirium {
+    function Scene9(): ƒS.SceneReturn;
+}
+declare namespace Nexirium {
     function tutorial(): ƒS.SceneReturn;
 }
-declare namespace Template {
+declare namespace Nexirium {
     function firstScene(): ƒS.SceneReturn;
 }
-declare namespace Template {
+declare namespace Nexirium {
     function gameOver1(): ƒS.SceneReturn;
+}
+declare namespace Nexirium {
+    function GameOver2(): ƒS.SceneReturn;
 }

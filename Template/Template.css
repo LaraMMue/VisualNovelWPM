@@ -41,7 +41,7 @@ dialog[type=splash]>img#FudgeStoryLogo {
 }
 
 #inventoryList {
-  list-style: none;
+  list-style-type: none;
 }
 
 speech {

@@ -1,4 +1,4 @@
-namespace Template {
+namespace Nexirium {
     export async function Scene4(): ƒS.SceneReturn {
         console.log("Scene 4 starting");
 
@@ -45,7 +45,7 @@ namespace Template {
         await ƒS.Character.hide(characters.companion);
         await ƒS.Character.show(characters.companion, characters.companion.pose.normal, ƒS.positions.bottomcenter);
         await ƒS.update(0.5);
-        await ƒS.Speech.tell(characters.companion, "This is Moonbase Alpha-7, a c-cutting-edge research station.");
+        await ƒS.Speech.tell(characters.companion, "This is Moonbase Alpha-7, a c-cutting-edge research station founded by NEXIRTECH.");
         await ƒS.Speech.tell(characters.companion, "Our primary purpose is to c-contribute to the progress of humankind in understanding the cosmos.");
         await ƒS.Speech.tell(characters.companion, "Our es-esteemed scientists in the different re-research stations on the moon work on a variety of pr-projects, ranging from lunar geology to astrophysics.");
         await ƒS.Speech.tell(characters.companion, "Alpha-7 researchers in particular focus on advancing robotic and AI technologies for i-intergalactic travel and outer terrestrial settlement. ");
@@ -139,7 +139,7 @@ namespace Template {
                 await ƒS.Character.hide(characters.companion);
                 await ƒS.Character.show(characters.companion, characters.companion.pose.scared, ƒS.positions.bottomcenter);
                 await ƒS.update(0.5);
-                await ƒS.Speech.tell(characters.companion, "BZZ BZZ!");
+                await ƒS.Speech.tell(characters.companion, "<i>BZZ BZZ!</i>");
                 await ƒS.Speech.tell(characters.mainCharacter, "Let's go already...");
                 await ƒS.Character.hide(characters.companion);
                 await ƒS.Character.show(characters.companion, characters.companion.pose.sad, ƒS.positions.bottomcenter);
