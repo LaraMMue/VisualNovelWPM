@@ -12,13 +12,13 @@ namespace Nexirium {
         await ƒS.Speech.tell(characters.mainCharacter, "My family is here? Where?");
         await ƒS.Speech.tell(characters.mother, "Oh I will let you see them this time. You know, this is the last time you helped me play this roleplay. It's starting to get boring now...");
         await ƒS.Speech.tell(characters.mainCharacter, "Roleplay? What roleplay? What the hell are you talking about? Let me see my family!");
-        await ƒS.Speech.tell(characters.mother, "Do you truly know who you are? You don't right? That's because you're just a character in my game. And you do exactly what I want you to do, more or less at least.");
+        await ƒS.Speech.tell(characters.mother, "Do you truly know who you are? You don't right? That's because you're just a character in my play. And you do exactly what I want you to do, more or less at least. You're just following a script.");
         await ƒS.Speech.tell(characters.mainCharacter, "What??");
         await ƒS.Speech.tell(characters.mother, "Oh I understand your confusion my dear. You are confused every single time I tell you this. You've been here before... How many times is it now Buddy?");
-        await ƒS.Character.show(characters.companion, characters.companion.pose.sad, ƒS.positions.bottomleft);
+        await ƒS.Character.show(characters.companion, characters.companion.pose.sad, ƒS.positions.left); // position?
         await ƒS.update(0.5);
         await ƒS.Speech.tell(characters.companion, "145...");
-        await ƒS.Speech.tell(characters.mother, "145 times! What a pretty number! Personally I think this is a nice number to end this game on.");
+        await ƒS.Speech.tell(characters.mother, "145 times! Oh my what a pretty number! Personally I think this is a nice number to end this experiment on.");
         await ƒS.Speech.tell(characters.mainCharacter, "Buddy, you're in on this too?? What is going on??");
 
         await ƒS.Speech.tell(characters.mother, "You have been lying to me all this time?");
@@ -44,6 +44,8 @@ namespace Nexirium {
 
         await ƒS.Speech.tell(characters.mother, "It's a really disappointing result, isn't it?");
         await ƒS.Speech.tell(characters.companion, "Yeah... I was sure this time " + characters.mainCharacter.name + " would regain free will. But in the end, our experiment failed...");
+        await ƒS.Speech.tell(characters.mother, "You lost our bet then, didn't you?");
+        await ƒS.Speech.tell(characters.companion, "Yeah... I did...");
 
 
 

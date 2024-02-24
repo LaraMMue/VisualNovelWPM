@@ -110,7 +110,7 @@ namespace Nexirium {
 
     landing: {
       name: "Successful Landing",
-      background: "Images/Background/landing.png"
+      background: "Images/Backgrounds/landing.png"
     },
 
     finalRoom: {
@@ -434,6 +434,7 @@ namespace Nexirium {
       { id: "Scene9", scene: Scene9, name: "Scene9" },
       { id: "GoodEnding", scene: GoodEnding, name: "Good Ending" },
       { id: "BadEnding", scene: BadEnding, name: "Bad Ending" },
+      { id: "Ending", scene: Ending, name: "Ending" }
 
 
     ];

@@ -13,7 +13,7 @@ namespace Nexirium {
         await ƒS.Speech.tell(characters.mainCharacter, "Alright alright, how do I activate the autopilot?");
         await ƒS.Speech.tell(characters.companion, "Press this button here. Then choose the destination from the preset list.");
         await ƒS.Speech.tell(characters.mainCharacter, "Great! Should be smooth sailing now, right?");
-        await ƒS.Character.show(characters.companion, characters.companion.pose.normal, ƒS.positions.bottomleft);
+        await ƒS.Character.show(characters.companion, characters.companion.pose.normal, ƒS.positions.bottomcenter);
         await ƒS.update(0.5);
         await ƒS.Speech.tell(characters.companion, "Yeah it should only take a few hours. And then we can...");
 
@@ -26,7 +26,7 @@ namespace Nexirium {
         await ƒS.Speech.tell(characters.companion, "I'll look up the manual right now. Please stay calm.");
         await ƒS.Speech.tell(characters.companion, "...");
         await ƒS.Character.hide(characters.companion);
-        await ƒS.Character.show(characters.companion, characters.companion.pose.scared, ƒS.positions.bottomleft);
+        await ƒS.Character.show(characters.companion, characters.companion.pose.scared, ƒS.positions.bottomcenter);
         await ƒS.update(0.5);
         await ƒS.Speech.tell(characters.companion, "I don't understand it. Why is it written like that? This is not following standard spaceship manual guidelines! It does say something about cables behind the seat but the rest...?");
         await ƒS.Speech.tell(characters.mainCharacter, "Oh no, oh no. Give it to me, I'll try to understand it.");
@@ -79,11 +79,11 @@ namespace Nexirium {
             case cableChoices.left:
                 console.log("go to game over 2");
                 dataForSave.wrongCable = true;
-                ƒS.Sound.fade(sound.alarm, 0.1, 0, false);
+                ƒS.Sound.fade(sound.alarm, 0, 1, false);
                 return "GameOver2";
             case cableChoices.right:
                 console.log("survived");
-                ƒS.Sound.fade(sound.alarm, 0.1, 0, false);
+                ƒS.Sound.fade(sound.alarm, 0, 1, false);
                 return "Scene8";
         };
 

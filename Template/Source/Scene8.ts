@@ -3,7 +3,7 @@ namespace Nexirium {
         console.log("FudgeStory Scene 8 starting");
 
 
-        await ƒS.Character.show(characters.companion, characters.companion.pose.normal, ƒS.positions.left);
+        await ƒS.Character.show(characters.companion, characters.companion.pose.normal, ƒS.positions.bottomcenter);
         await ƒS.update(0.5);
         ƒS.Sound.fade(music.solitaryExploration, 0.1, 3, true);
         await ƒS.Speech.tell(characters.mainCharacter, "I think that worked!! Wooo, we're still alive!");
@@ -23,16 +23,19 @@ namespace Nexirium {
                 console.log("Buddy Score: " + dataForSave.buddyScore);
                 await ƒS.Speech.tell(characters.mainCharacter, "Are you okay? I saw you bumping your head while I was connecting the cables.");
                 await ƒS.Character.hide(characters.companion);
-                await ƒS.Character.show(characters.companion, characters.companion.pose.happy, ƒS.positions.bottomleft);
+                await ƒS.Character.show(characters.companion, characters.companion.pose.happy, ƒS.positions.bottomcenter);
                 await ƒS.update(0.5);
                 await ƒS.Speech.tell(characters.companion, "Oh you noticed that? But yeah, I'm fine, just a small dent.");
+                ƒS.Inventory.add(items.diary3);
+                await ƒS.update();
+                await ƒS.Speech.tell(characters.system, "Diary File unlocked. Open inventory to view.");
                 break;
             case lastFriendChoices.doubt:
                 dataForSave.buddyScore -= 1;
                 console.log("Buddy Score: " + dataForSave.buddyScore);
                 await ƒS.Speech.tell(characters.mainCharacter, "What, were you doubting me?");
                 await ƒS.Character.hide(characters.companion);
-                await ƒS.Character.show(characters.companion, characters.companion.pose.sad, ƒS.positions.bottomleft);
+                await ƒS.Character.show(characters.companion, characters.companion.pose.sad, ƒS.positions.bottomcenter);
                 await ƒS.update(0.5);
                 await ƒS.Speech.tell(characters.companion, "No no, but I mean it was a 50 50 chance to get it wrong...");
                 await ƒS.Speech.tell(characters.mainCharacter, "You <i>were</i> doubting me... At least show some gratitude for saving both of our lives. Or... do you even count as a life?");
@@ -41,7 +44,7 @@ namespace Nexirium {
 
 
         await ƒS.Character.hide(characters.companion);
-        await ƒS.Character.show(characters.companion, characters.companion.pose.normal, ƒS.positions.bottomleft);
+        await ƒS.Character.show(characters.companion, characters.companion.pose.normal, ƒS.positions.bottomcenter);
         await ƒS.update(0.5);
 
         await ƒS.Speech.tell(characters.mainCharacter, "We're getting close to the space station!");
@@ -50,7 +53,7 @@ namespace Nexirium {
         await ƒS.Speech.tell(characters.mainCharacter, "Who's this? How are they speaking to us?");
 
         await ƒS.Character.hide(characters.companion);
-        await ƒS.Character.show(characters.companion, characters.companion.pose.annoyed, ƒS.positions.bottomleft);
+        await ƒS.Character.show(characters.companion, characters.companion.pose.annoyed, ƒS.positions.bottomcenter);
         await ƒS.update(0.5);
         await ƒS.Speech.tell(characters.companion, "Oh...");
         await ƒS.Speech.tell(characters.mainCharacter, "What? Do you know this person?");
@@ -62,6 +65,7 @@ namespace Nexirium {
         await ƒS.Character.hide(characters.companion);
         await ƒS.Location.show(location.landing);
         await ƒS.update(1);
+        dataForSave.nameMother = "Mother";
         characters.mother.name = dataForSave.nameMother;
         await ƒS.Speech.tell(characters.mother, "That's right my dear. I'm glad to see you back home, little Buddy. I've missed you, you know? It can get so boring here without you.");
         await ƒS.Speech.tell(characters.mother, "Now back to you " + characters.mainCharacter.name + ", I heard you are looking for your family?");

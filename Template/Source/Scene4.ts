@@ -123,6 +123,9 @@ namespace Nexirium {
                 await ƒS.Character.show(characters.companion, characters.companion.pose.happy, ƒS.positions.bottomcenter);
                 await ƒS.update(0.5);
                 await ƒS.Speech.tell(characters.companion, "I'm glad to hear that!");
+                ƒS.Inventory.add(items.diary1);
+                await ƒS.update();
+                await ƒS.Speech.tell(characters.system, "Diary File unlocked. Open inventory to view.");
                 console.log(dataForSave.buddyScore);
                 break;
             case healthChoices.justGo:

@@ -45,6 +45,10 @@ namespace Nexirium {
                 await ƒS.Speech.tell(characters.companion, "Oh! I will update the way I adress you then, " + characters.mainCharacter.name + "! D-does this mean we are f-friends?");
                 await ƒS.Speech.tell(characters.mainCharacter, "Sure! We only have each other right now, so why not?");
                 await ƒS.Speech.tell(characters.companion, "<i> BZZ BZZ </i> , that makes me very h-happy!");
+                ƒS.Inventory.add(items.diary2);
+                await ƒS.update();
+                await ƒS.Speech.tell(characters.system, "Diary File unlocked. Open inventory to view.");
+
                 dataForSave.buddyScore += 1;
                 console.log("Buddy Score: " + dataForSave.buddyScore);
                 break;
@@ -186,7 +190,7 @@ namespace Nexirium {
             await ƒS.Character.hide(characters.companion);
             await ƒS.Location.show(location.blackBackground);
             await ƒS.update(0.5);
-            ƒS.Sound.fade(music.solitaryExploration, 0.1, 0, false);
+            ƒS.Sound.fade(music.solitaryExploration, 0, 1, false);
             return "Scene6";
 
 

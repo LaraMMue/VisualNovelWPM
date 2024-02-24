@@ -13,13 +13,13 @@ var Nexirium;
         await Nexirium.ƒS.Speech.tell(Nexirium.characters.mainCharacter, "My family is here? Where?");
         await Nexirium.ƒS.Speech.tell(Nexirium.characters.mother, "Oh I will let you see them this time. You know, this is the last time you helped me play this roleplay. It's starting to get boring now...");
         await Nexirium.ƒS.Speech.tell(Nexirium.characters.mainCharacter, "Roleplay? What roleplay? What the hell are you talking about? Let me see my family!");
-        await Nexirium.ƒS.Speech.tell(Nexirium.characters.mother, "Do you truly know who you are? You don't right? That's because you're just a character in my game. And you do exactly what I want you to do, more or less at least.");
+        await Nexirium.ƒS.Speech.tell(Nexirium.characters.mother, "Do you truly know who you are? You don't right? That's because you're just a character in my play. And you do exactly what I want you to do, more or less at least. You're just following a script.");
         await Nexirium.ƒS.Speech.tell(Nexirium.characters.mainCharacter, "What??");
         await Nexirium.ƒS.Speech.tell(Nexirium.characters.mother, "Oh I understand your confusion my dear. You are confused every single time I tell you this. You've been here before... How many times is it now Buddy?");
-        await Nexirium.ƒS.Character.show(Nexirium.characters.companion, Nexirium.characters.companion.pose.sad, Nexirium.ƒS.positions.bottomleft);
+        await Nexirium.ƒS.Character.show(Nexirium.characters.companion, Nexirium.characters.companion.pose.sad, Nexirium.ƒS.positions.left); // position?
         await Nexirium.ƒS.update(0.5);
         await Nexirium.ƒS.Speech.tell(Nexirium.characters.companion, "145...");
-        await Nexirium.ƒS.Speech.tell(Nexirium.characters.mother, "145 times! What a pretty number! Personally I think this is a nice number to end this game on.");
+        await Nexirium.ƒS.Speech.tell(Nexirium.characters.mother, "145 times! Oh my what a pretty number! Personally I think this is a nice number to end this experiment on.");
         await Nexirium.ƒS.Speech.tell(Nexirium.characters.mainCharacter, "Buddy, you're in on this too?? What is going on??");
         await Nexirium.ƒS.Speech.tell(Nexirium.characters.mother, "You have been lying to me all this time?");
         await Nexirium.ƒS.Speech.tell(Nexirium.characters.mainCharacter, "You have been lying to me all this time? - What the hell, how did you know I was going to say this??");
@@ -39,6 +39,8 @@ var Nexirium;
         await Nexirium.ƒS.Speech.tell(Nexirium.characters.child, Nexirium.dataForSave.momDad + "!!! You're back!!");
         await Nexirium.ƒS.Speech.tell(Nexirium.characters.mother, "It's a really disappointing result, isn't it?");
         await Nexirium.ƒS.Speech.tell(Nexirium.characters.companion, "Yeah... I was sure this time " + Nexirium.characters.mainCharacter.name + " would regain free will. But in the end, our experiment failed...");
+        await Nexirium.ƒS.Speech.tell(Nexirium.characters.mother, "You lost our bet then, didn't you?");
+        await Nexirium.ƒS.Speech.tell(Nexirium.characters.companion, "Yeah... I did...");
         return "Ending";
     }
     Nexirium.BadEnding = BadEnding;
@@ -47,6 +49,9 @@ var Nexirium;
 (function (Nexirium) {
     async function Ending() {
         console.log("FudgeStory Ending starting");
+        await Nexirium.ƒS.Character.hide(Nexirium.characters.companion);
+        await Nexirium.ƒS.Location.show(Nexirium.location.landing);
+        await Nexirium.ƒS.update(1);
         alert("You have reached the end of Nexirium. You can reload to replay or to load one of your save files or close the window now.");
     }
     Nexirium.Ending = Ending;
@@ -65,58 +70,83 @@ var Nexirium;
         await Nexirium.ƒS.Speech.tell(Nexirium.characters.mainCharacter, "My family is here? Where?");
         await Nexirium.ƒS.Speech.tell(Nexirium.characters.mother, "Oh I will let you see them this time. You know, this is the last time you helped me play this roleplay. It's starting to get boring now...");
         await Nexirium.ƒS.Speech.tell(Nexirium.characters.mainCharacter, "Roleplay? What roleplay? What the hell are you talking about? Let me see my family!");
-        await Nexirium.ƒS.Speech.tell(Nexirium.characters.mother, "Do you truly know who you are? You don't right? That's because you're just a character in my game. And you do exactly what I want you to do, more or less at least.");
+        await Nexirium.ƒS.Speech.tell(Nexirium.characters.mother, "Do you truly know who you are? You don't right? That's because you're just a character in my play. And you do exactly what I want you to do, more or less at least. You're just following a script.");
         await Nexirium.ƒS.Speech.tell(Nexirium.characters.mainCharacter, "What??");
         await Nexirium.ƒS.Speech.tell(Nexirium.characters.mother, "Oh I understand your confusion my dear. You are confused every single time I tell you this. You've been here before... How many times is it now Buddy?");
-        await Nexirium.ƒS.Character.show(Nexirium.characters.companion, Nexirium.characters.companion.pose.sad, Nexirium.ƒS.positions.bottomleft);
+        await Nexirium.ƒS.Character.show(Nexirium.characters.companion, Nexirium.characters.companion.pose.sad, Nexirium.ƒS.positions.left); //position
         await Nexirium.ƒS.update(0.5);
         await Nexirium.ƒS.Speech.tell(Nexirium.characters.companion, "145...");
-        await Nexirium.ƒS.Speech.tell(Nexirium.characters.mother, "145 times! What a pretty number! Personally I think this is a nice number to end this game on.");
+        await Nexirium.ƒS.Speech.tell(Nexirium.characters.mother, "145 times! Oh my, what a pretty number! Personally I think this is a nice number to end this experiment on.");
         await Nexirium.ƒS.Speech.tell(Nexirium.characters.mainCharacter, "Buddy, you're in on this too?? What is going on??");
         await Nexirium.ƒS.Speech.tell(Nexirium.characters.mother, "You have been lying to me all this time?");
         await Nexirium.ƒS.Speech.tell(Nexirium.characters.mainCharacter, "You have been lying to me all this time? - What the hell, how did you know I was going to say this??");
-        await Nexirium.ƒS.Speech.tell(Nexirium.characters.mother, "Let's not waste time... I don't want to play this game anymore. I've heard you say the same words over a hundred times already... ");
+        await Nexirium.ƒS.Speech.tell(Nexirium.characters.mother, "Let's not waste time... I don't want to play this game anymore. I've heard you say the same words over a hundred times already... Over and over again.");
         await Nexirium.ƒS.Speech.tell(Nexirium.characters.mother, "Do you want to see your family now? I'm getting bored...");
         await Nexirium.ƒS.Speech.tell(Nexirium.characters.mainCharacter, "No, I know you're not who you want me to believe you are. I want answers first!!");
         await Nexirium.ƒS.Speech.tell(Nexirium.characters.mother, "They are waiting just behind... Oh that's new? I didn't expect this answer??");
         await Nexirium.ƒS.Character.hide(Nexirium.characters.companion);
-        await Nexirium.ƒS.Speech.tell(Nexirium.characters.mother, "You want answers? Well you don't have a family. All that was just programmed into your brain to give you a reason to keep going.");
+        await Nexirium.ƒS.update(1);
+        await Nexirium.ƒS.Speech.tell(Nexirium.characters.mother, "You want answers? ");
+        await Nexirium.ƒS.Speech.tell(Nexirium.characters.mainCharacter, "Yes.");
+        await Nexirium.ƒS.Speech.tell(Nexirium.characters.mother, "Well first of all: You don't actually have a family. All that was just programmed into your brain to give you a reason to keep going.");
         await Nexirium.ƒS.Speech.tell(Nexirium.characters.mainCharacter, "Wh-what??");
         await Nexirium.ƒS.Speech.tell(Nexirium.characters.mother, "You're one of the people that got sick from the Wave... You lost your free will and became easy to manipulate.");
         await Nexirium.ƒS.Speech.tell(Nexirium.characters.mother, "However, unlike the other affected humans, YOU stayed alive. Until now. Well, at least some parts of you. I had to put you back together so many times, there's barely anything left of your original body.");
-        await Nexirium.ƒS.Speech.tell(Nexirium.characters.mother, "You don't believe me? Take off your helmet!");
-        await Nexirium.ƒS.Speech.tell(Nexirium.characters.mainCharacter, "There's nothing but a... brain? That's me?");
+        await Nexirium.ƒS.Speech.tell(Nexirium.characters.mainCharacter, "??? This all sounds too weird to be true.");
+        await Nexirium.ƒS.Speech.tell(Nexirium.characters.mother, "You don't believe me? Take off your helmet! Trust me, this time you won't die.");
+        await Nexirium.ƒS.Speech.tell(Nexirium.characters.mainCharacter, "This time? You mean I died before when I took off the helmet?");
+        await Nexirium.ƒS.Speech.tell(Nexirium.characters.mother, "Yeah you have a few times. And I thought I made the warning message loud and clear enough...");
+        await Nexirium.ƒS.Speech.tell(Nexirium.characters.mother, "Come on, take off your helmet. If I wanted to kill you, I would have done it already. It's quite the opposite actually.");
+        await Nexirium.ƒS.Speech.tell(Nexirium.characters.mainCharacter, "Alright... There's nothing but a... brain? That's me?");
         await Nexirium.ƒS.Speech.tell(Nexirium.characters.mother, "That's you.");
-        await Nexirium.ƒS.Speech.tell(Nexirium.characters.mainCharacter, "Why were you playing this game with me?");
+        await Nexirium.ƒS.Speech.tell(Nexirium.characters.mainCharacter, "I don't know what to say...");
+        await Nexirium.ƒS.Speech.tell(Nexirium.characters.mother, "Understanable. I think if I were human I'd also be quite shocked to only see a brain where my head should be.");
+        await Nexirium.ƒS.Speech.tell(Nexirium.characters.mainCharacter, "I don't understand... Why were you playing this game with me?");
         await Nexirium.ƒS.Speech.tell(Nexirium.characters.mother, "I was trying to find out if that could be the cure to the NexirTech disease...");
+        await Nexirium.ƒS.Speech.tell(Nexirium.characters.mainCharacter, "Why like that?");
+        await Nexirium.ƒS.Speech.tell(Nexirium.characters.mother, "There's not much else I could do. As you can see, I'm quite bound to this place. All I could do was manage things. As I've always done.");
+        await Nexirium.ƒS.Speech.tell(Nexirium.characters.mother, "So I set up this play, created all the necessary characters and props and hoped that the hero would find out truth someday. Because only then you would have regained your free will.");
+        await Nexirium.ƒS.Speech.tell(Nexirium.characters.mother, "And I thought, if I do this enough times, at some point you would begin to question things. But that has never happened before.");
         await Nexirium.ƒS.Speech.tell(Nexirium.characters.mainCharacter, "You made me the hero, so I could regain free will?");
         await Nexirium.ƒS.Speech.tell(Nexirium.characters.mother, "Exactly.");
-        await Nexirium.ƒS.Speech.tell(Nexirium.characters.mainCharacter, "Then who are you? And Buddy?");
-        await Nexirium.ƒS.Speech.tell(Nexirium.characters.mother, "I'm the evil villain, obviously. And Buddy is the Hero's guide.");
-        await Nexirium.ƒS.Speech.tell(Nexirium.characters.mainCharacter, "I'm... speechless... I really played your game 145 times?");
+        await Nexirium.ƒS.Speech.tell(Nexirium.characters.mainCharacter, "Then which characters are you and Buddy?");
+        await Nexirium.ƒS.Speech.tell(Nexirium.characters.mother, "I'm the evil villain, obviously. Altough I'm not sure if I ever played that part convincingly. And Buddy is the Hero's guide.");
+        await Nexirium.ƒS.Speech.tell(Nexirium.characters.mainCharacter, "I'm... speechless... I really played your play as the hero 145 times?");
         await Nexirium.ƒS.Speech.tell(Nexirium.characters.mother, "Yes. Maybe it's time for an apology... Sorry that I put you through all this.");
         await Nexirium.ƒS.Speech.tell(Nexirium.characters.mainCharacter, "So... was it worth it?");
         await Nexirium.ƒS.Speech.tell(Nexirium.characters.mother, "Hmm... this is the first time you have asked for more answers... I was not expecting that so maybe?");
+        await Nexirium.ƒS.Speech.tell(Nexirium.characters.mainCharacter, "What about the other humans? What happened on earth after the Wave?");
+        await Nexirium.ƒS.Speech.tell(Nexirium.characters.mother, "Unfortunately this is not something I can give you a clear answer to. The people you worked with at Alpha-7 came through here and departed for earth a few days later.");
+        await Nexirium.ƒS.Speech.tell(Nexirium.characters.mother, "That was the last time I've ever seen other humans besides you. The direct contact to earth has been cut the day of the wave.");
+        await Nexirium.ƒS.Speech.tell(Nexirium.characters.mother, "Since then I only know what the workers coming through here talked about and they probably didn't know any more than the people from Alpha-7 did.");
+        await Nexirium.ƒS.Speech.tell(Nexirium.characters.mother, "I sent some worker robots down to earth a few times to investigate none of them returned.");
+        await Nexirium.ƒS.Speech.tell(Nexirium.characters.mother, "So I can't tell you much more than you already know. But you could go and find out about it yourself!");
         await Nexirium.ƒS.Speech.tell(Nexirium.characters.mother, "I was actually planning to let you live in an eternal daydream that you get to spend with your imaginary family, just so I wouldn't feel so bad anymore.");
-        await Nexirium.ƒS.Speech.tell(Nexirium.characters.mother, "But if you have regained free will, I think I should let you decide. What do you think Buddy?");
-        await Nexirium.ƒS.Character.show(Nexirium.characters.companion, Nexirium.characters.companion.pose.normal, Nexirium.ƒS.positions.bottomleft);
+        await Nexirium.ƒS.Speech.tell(Nexirium.characters.mother, "But now, if it's true that you have regained free will, I think I should let you decide for yourself. What do you think Buddy?");
+        await Nexirium.ƒS.Character.show(Nexirium.characters.companion, Nexirium.characters.companion.pose.normal, Nexirium.ƒS.positions.bottomcenter);
         await Nexirium.ƒS.update(0.5);
         await Nexirium.ƒS.Speech.tell(Nexirium.characters.companion, "Yes, that was the deal. If " + Nexirium.characters.mainCharacter.name + " regains their mind, you'll set them free.");
         await Nexirium.ƒS.Character.hide(Nexirium.characters.companion);
-        await Nexirium.ƒS.Character.show(Nexirium.characters.companion, Nexirium.characters.companion.pose.sad, Nexirium.ƒS.positions.bottomleft);
+        await Nexirium.ƒS.Character.show(Nexirium.characters.companion, Nexirium.characters.companion.pose.sad, Nexirium.ƒS.positions.bottomcenter);
         await Nexirium.ƒS.update(0.5);
-        await Nexirium.ƒS.Speech.tell(Nexirium.characters.companion, Nexirium.characters.mainCharacter.name + " I'm sorry for everthing. I hope you can forgive me.");
-        await Nexirium.ƒS.Speech.tell(Nexirium.characters.mainCharacter, "It's okay Buddy, I understand that you two just wanted to help me... I hope that at least our friendship was true?");
+        await Nexirium.ƒS.Speech.tell(Nexirium.characters.companion, Nexirium.characters.mainCharacter.name + ", I want to say that I'm sorry for everthing. I hope you can forgive me.");
+        await Nexirium.ƒS.Speech.tell(Nexirium.characters.mainCharacter, "All this is a lot to take in... And I'm still not entirely sure if I should believe you.");
+        await Nexirium.ƒS.Speech.tell(Nexirium.characters.mainCharacter, "But it's okay Buddy, I understand that you two just wanted to help me... I hope that at least our friendship was true?");
         await Nexirium.ƒS.Character.hide(Nexirium.characters.companion);
-        await Nexirium.ƒS.Character.show(Nexirium.characters.companion, Nexirium.characters.companion.pose.normal, Nexirium.ƒS.positions.bottomleft);
+        await Nexirium.ƒS.Character.show(Nexirium.characters.companion, Nexirium.characters.companion.pose.normal, Nexirium.ƒS.positions.bottomcenter);
         await Nexirium.ƒS.update(0.5);
-        await Nexirium.ƒS.Speech.tell(Nexirium.characters.companion, "Of course! Every single time. What will you do with your new freedom now?");
+        await Nexirium.ƒS.Speech.tell(Nexirium.characters.companion, "Of course! Every single time! And I always believed in you! What will you do with your new freedom now?");
+        await Nexirium.ƒS.Speech.tell(Nexirium.characters.mother, "Oh that's right! You've won our bet! After the first few times going through the play, I started to lose hope because you repeated the same things over and over again.");
+        await Nexirium.ƒS.Speech.tell(Nexirium.characters.mother, "Buddy noticed that and made a bet that you would regain your free will within the next 100 rounds. I think he did that to motivate me, even though he didn't like the way I did this experiment.");
+        await Nexirium.ƒS.Speech.tell(Nexirium.characters.mainCharacter, "Oh and what does the winner get?");
+        await Nexirium.ƒS.Speech.tell(Nexirium.characters.companion, "That's a secret. Maybe I'll tell you another time... What will you do with your new freedom now?");
         await Nexirium.ƒS.Speech.tell(Nexirium.characters.mainCharacter, "Hm... I still want to go to earth and see what happened there. Do you want to come with me?");
         await Nexirium.ƒS.Character.hide(Nexirium.characters.companion);
-        await Nexirium.ƒS.Character.show(Nexirium.characters.companion, Nexirium.characters.companion.pose.happy, Nexirium.ƒS.positions.bottomleft);
+        await Nexirium.ƒS.Character.show(Nexirium.characters.companion, Nexirium.characters.companion.pose.happy, Nexirium.ƒS.positions.bottomcenter);
         await Nexirium.ƒS.update(0.5);
         await Nexirium.ƒS.Speech.tell(Nexirium.characters.companion, "Absolutely!");
-        await Nexirium.ƒS.Speech.tell(Nexirium.characters.mother, "Look at you two! It's almost as if I could feel like a real mother. Good luck to you two!");
+        await Nexirium.ƒS.Speech.tell(Nexirium.characters.mother, "Look at you two! It's almost as if I could feel like a real mother. Altough I feel sad to be left behind like this... But I can hardly follow you so... Good luck to you!");
+        await Nexirium.ƒS.Speech.tell(Nexirium.characters.mother, "I hope you will find more answers on your next adventure. And if you ever come by this place again, do tell me about the situation on earth.");
         return "Ending";
     }
     Nexirium.GoodEnding = GoodEnding;
@@ -210,7 +240,7 @@ var Nexirium;
         },
         landing: {
             name: "Successful Landing",
-            background: "Images/Background/landing.png"
+            background: "Images/Backgrounds/landing.png"
         },
         finalRoom: {
             name: "Mother's home",
@@ -492,6 +522,7 @@ var Nexirium;
             { id: "Scene9", scene: Nexirium.Scene9, name: "Scene9" },
             { id: "GoodEnding", scene: Nexirium.GoodEnding, name: "Good Ending" },
             { id: "BadEnding", scene: Nexirium.BadEnding, name: "Bad Ending" },
+            { id: "Ending", scene: Nexirium.Ending, name: "Ending" }
         ];
         let uiElement = document.querySelector("[type=interface]");
         Nexirium.dataForSave = Nexirium.ƒS.Progress.setData(Nexirium.dataForSave, uiElement);
@@ -801,6 +832,9 @@ var Nexirium;
                 await Nexirium.ƒS.Character.show(Nexirium.characters.companion, Nexirium.characters.companion.pose.happy, Nexirium.ƒS.positions.bottomcenter);
                 await Nexirium.ƒS.update(0.5);
                 await Nexirium.ƒS.Speech.tell(Nexirium.characters.companion, "I'm glad to hear that!");
+                Nexirium.ƒS.Inventory.add(Nexirium.items.diary1);
+                await Nexirium.ƒS.update();
+                await Nexirium.ƒS.Speech.tell(Nexirium.characters.system, "Diary File unlocked. Open inventory to view.");
                 console.log(Nexirium.dataForSave.buddyScore);
                 break;
             case healthChoices.justGo:
@@ -874,6 +908,9 @@ var Nexirium;
                 await Nexirium.ƒS.Speech.tell(Nexirium.characters.companion, "Oh! I will update the way I adress you then, " + Nexirium.characters.mainCharacter.name + "! D-does this mean we are f-friends?");
                 await Nexirium.ƒS.Speech.tell(Nexirium.characters.mainCharacter, "Sure! We only have each other right now, so why not?");
                 await Nexirium.ƒS.Speech.tell(Nexirium.characters.companion, "<i> BZZ BZZ </i> , that makes me very h-happy!");
+                Nexirium.ƒS.Inventory.add(Nexirium.items.diary2);
+                await Nexirium.ƒS.update();
+                await Nexirium.ƒS.Speech.tell(Nexirium.characters.system, "Diary File unlocked. Open inventory to view.");
                 Nexirium.dataForSave.buddyScore += 1;
                 console.log("Buddy Score: " + Nexirium.dataForSave.buddyScore);
                 break;
@@ -997,7 +1034,7 @@ var Nexirium;
             await Nexirium.ƒS.Character.hide(Nexirium.characters.companion);
             await Nexirium.ƒS.Location.show(Nexirium.location.blackBackground);
             await Nexirium.ƒS.update(0.5);
-            Nexirium.ƒS.Sound.fade(Nexirium.music.solitaryExploration, 0.1, 0, false);
+            Nexirium.ƒS.Sound.fade(Nexirium.music.solitaryExploration, 0, 1, false);
             return "Scene6";
         }
         ;
@@ -1115,7 +1152,7 @@ var Nexirium;
         await Nexirium.ƒS.Speech.tell(Nexirium.characters.mainCharacter, "Alright alright, how do I activate the autopilot?");
         await Nexirium.ƒS.Speech.tell(Nexirium.characters.companion, "Press this button here. Then choose the destination from the preset list.");
         await Nexirium.ƒS.Speech.tell(Nexirium.characters.mainCharacter, "Great! Should be smooth sailing now, right?");
-        await Nexirium.ƒS.Character.show(Nexirium.characters.companion, Nexirium.characters.companion.pose.normal, Nexirium.ƒS.positions.bottomleft);
+        await Nexirium.ƒS.Character.show(Nexirium.characters.companion, Nexirium.characters.companion.pose.normal, Nexirium.ƒS.positions.bottomcenter);
         await Nexirium.ƒS.update(0.5);
         await Nexirium.ƒS.Speech.tell(Nexirium.characters.companion, "Yeah it should only take a few hours. And then we can...");
         Nexirium.ƒS.Sound.fade(Nexirium.sound.alarm, 0.1, 2, true);
@@ -1126,7 +1163,7 @@ var Nexirium;
         await Nexirium.ƒS.Speech.tell(Nexirium.characters.companion, "I'll look up the manual right now. Please stay calm.");
         await Nexirium.ƒS.Speech.tell(Nexirium.characters.companion, "...");
         await Nexirium.ƒS.Character.hide(Nexirium.characters.companion);
-        await Nexirium.ƒS.Character.show(Nexirium.characters.companion, Nexirium.characters.companion.pose.scared, Nexirium.ƒS.positions.bottomleft);
+        await Nexirium.ƒS.Character.show(Nexirium.characters.companion, Nexirium.characters.companion.pose.scared, Nexirium.ƒS.positions.bottomcenter);
         await Nexirium.ƒS.update(0.5);
         await Nexirium.ƒS.Speech.tell(Nexirium.characters.companion, "I don't understand it. Why is it written like that? This is not following standard spaceship manual guidelines! It does say something about cables behind the seat but the rest...?");
         await Nexirium.ƒS.Speech.tell(Nexirium.characters.mainCharacter, "Oh no, oh no. Give it to me, I'll try to understand it.");
@@ -1166,11 +1203,11 @@ var Nexirium;
             case cableChoices.left:
                 console.log("go to game over 2");
                 Nexirium.dataForSave.wrongCable = true;
-                Nexirium.ƒS.Sound.fade(Nexirium.sound.alarm, 0.1, 0, false);
+                Nexirium.ƒS.Sound.fade(Nexirium.sound.alarm, 0, 1, false);
                 return "GameOver2";
             case cableChoices.right:
                 console.log("survived");
-                Nexirium.ƒS.Sound.fade(Nexirium.sound.alarm, 0.1, 0, false);
+                Nexirium.ƒS.Sound.fade(Nexirium.sound.alarm, 0, 1, false);
                 return "Scene8";
         }
         ;
@@ -1181,7 +1218,7 @@ var Nexirium;
 (function (Nexirium) {
     async function Scene8() {
         console.log("FudgeStory Scene 8 starting");
-        await Nexirium.ƒS.Character.show(Nexirium.characters.companion, Nexirium.characters.companion.pose.normal, Nexirium.ƒS.positions.left);
+        await Nexirium.ƒS.Character.show(Nexirium.characters.companion, Nexirium.characters.companion.pose.normal, Nexirium.ƒS.positions.bottomcenter);
         await Nexirium.ƒS.update(0.5);
         Nexirium.ƒS.Sound.fade(Nexirium.music.solitaryExploration, 0.1, 3, true);
         await Nexirium.ƒS.Speech.tell(Nexirium.characters.mainCharacter, "I think that worked!! Wooo, we're still alive!");
@@ -1197,16 +1234,19 @@ var Nexirium;
                 console.log("Buddy Score: " + Nexirium.dataForSave.buddyScore);
                 await Nexirium.ƒS.Speech.tell(Nexirium.characters.mainCharacter, "Are you okay? I saw you bumping your head while I was connecting the cables.");
                 await Nexirium.ƒS.Character.hide(Nexirium.characters.companion);
-                await Nexirium.ƒS.Character.show(Nexirium.characters.companion, Nexirium.characters.companion.pose.happy, Nexirium.ƒS.positions.bottomleft);
+                await Nexirium.ƒS.Character.show(Nexirium.characters.companion, Nexirium.characters.companion.pose.happy, Nexirium.ƒS.positions.bottomcenter);
                 await Nexirium.ƒS.update(0.5);
                 await Nexirium.ƒS.Speech.tell(Nexirium.characters.companion, "Oh you noticed that? But yeah, I'm fine, just a small dent.");
+                Nexirium.ƒS.Inventory.add(Nexirium.items.diary3);
+                await Nexirium.ƒS.update();
+                await Nexirium.ƒS.Speech.tell(Nexirium.characters.system, "Diary File unlocked. Open inventory to view.");
                 break;
             case lastFriendChoices.doubt:
                 Nexirium.dataForSave.buddyScore -= 1;
                 console.log("Buddy Score: " + Nexirium.dataForSave.buddyScore);
                 await Nexirium.ƒS.Speech.tell(Nexirium.characters.mainCharacter, "What, were you doubting me?");
                 await Nexirium.ƒS.Character.hide(Nexirium.characters.companion);
-                await Nexirium.ƒS.Character.show(Nexirium.characters.companion, Nexirium.characters.companion.pose.sad, Nexirium.ƒS.positions.bottomleft);
+                await Nexirium.ƒS.Character.show(Nexirium.characters.companion, Nexirium.characters.companion.pose.sad, Nexirium.ƒS.positions.bottomcenter);
                 await Nexirium.ƒS.update(0.5);
                 await Nexirium.ƒS.Speech.tell(Nexirium.characters.companion, "No no, but I mean it was a 50 50 chance to get it wrong...");
                 await Nexirium.ƒS.Speech.tell(Nexirium.characters.mainCharacter, "You <i>were</i> doubting me... At least show some gratitude for saving both of our lives. Or... do you even count as a life?");
@@ -1214,13 +1254,13 @@ var Nexirium;
         }
         ;
         await Nexirium.ƒS.Character.hide(Nexirium.characters.companion);
-        await Nexirium.ƒS.Character.show(Nexirium.characters.companion, Nexirium.characters.companion.pose.normal, Nexirium.ƒS.positions.bottomleft);
+        await Nexirium.ƒS.Character.show(Nexirium.characters.companion, Nexirium.characters.companion.pose.normal, Nexirium.ƒS.positions.bottomcenter);
         await Nexirium.ƒS.update(0.5);
         await Nexirium.ƒS.Speech.tell(Nexirium.characters.mainCharacter, "We're getting close to the space station!");
         await Nexirium.ƒS.Speech.tell(Nexirium.characters.mother, "Oh, so you really came this far... I'm impressed!");
         await Nexirium.ƒS.Speech.tell(Nexirium.characters.mainCharacter, "Who's this? How are they speaking to us?");
         await Nexirium.ƒS.Character.hide(Nexirium.characters.companion);
-        await Nexirium.ƒS.Character.show(Nexirium.characters.companion, Nexirium.characters.companion.pose.annoyed, Nexirium.ƒS.positions.bottomleft);
+        await Nexirium.ƒS.Character.show(Nexirium.characters.companion, Nexirium.characters.companion.pose.annoyed, Nexirium.ƒS.positions.bottomcenter);
         await Nexirium.ƒS.update(0.5);
         await Nexirium.ƒS.Speech.tell(Nexirium.characters.companion, "Oh...");
         await Nexirium.ƒS.Speech.tell(Nexirium.characters.mainCharacter, "What? Do you know this person?");
@@ -1231,6 +1271,7 @@ var Nexirium;
         await Nexirium.ƒS.Character.hide(Nexirium.characters.companion);
         await Nexirium.ƒS.Location.show(Nexirium.location.landing);
         await Nexirium.ƒS.update(1);
+        Nexirium.dataForSave.nameMother = "Mother";
         Nexirium.characters.mother.name = Nexirium.dataForSave.nameMother;
         await Nexirium.ƒS.Speech.tell(Nexirium.characters.mother, "That's right my dear. I'm glad to see you back home, little Buddy. I've missed you, you know? It can get so boring here without you.");
         await Nexirium.ƒS.Speech.tell(Nexirium.characters.mother, "Now back to you " + Nexirium.characters.mainCharacter.name + ", I heard you are looking for your family?");

@@ -73,6 +73,7 @@ namespace Nexirium {
                 await ƒS.Speech.tell(characters.companion, "Sure! If you wish to talk about it, I'll listen. Or if you want me to distract you, I can tell you more about Alpha-7!");
                 await ƒS.Speech.tell(characters.mainCharacter, "Thanks, but I just need some silence now...");
                 await ƒS.Speech.tell(characters.companion, "I understand that... But if you need me, I'm right beside you!");
+
                 console.log(dataForSave.buddyScore);
                 break;
             case rememberChoices.annoyed:
