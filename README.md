@@ -4,16 +4,19 @@ A FUDGE module for the easy development of interactive stories, visual novels an
 
 # References
 - [APIs](https://jirkadelloro.github.io/FUDGE_Story/Documentation/Reference/#fudge-story-reference)
-- [Pages-Link](https://jirkadelloro.github.io/FUDGE_Story/Tutorial_WS22/Tutorial_WS22.html)
+- [Pages-Link](https://larammue.github.io/VisualNovelWPM/Template/Template.html)
+- [Github Repository](https://github.com/LaraMMue/VisualNovelWPM)
+- [Konzept]()
+
 
 ## Bewertungskriterien
 © Prof. Dipl.-Ing. Jirka R. Dell'Oro-Friedl, HFU  
 
 | Nr | Bezeichnung           | Inhalt |
 |---:|-----------------------|------|
-|    | Titel                 |   |
-|    | Name                  |   |
-|    | Matrikelnummer        |   |
+|    | Titel                 |Nexirium   |
+|    | Name                  |Lara Müller   |
+|    | Matrikelnummer        |266298   |
 |  1 | Konzeption     | Die Story der Visual Novel wird in einer kurzen Inhaltsangabe beschrieben und der Konzeption beigefügt. In dieser sind jegliche Diagramme (Decision-Tree-Diagrams), Scribbles sowie entweder ein Storyboard, ein Drehbuch oder Ähnliches enthalten.                                                                                                                            |
 |  2 | Charaktersteckbriefe     | Kommen Archetypen zum Einsatz? Welche anderweitigen Charaktermodelle existieren (Steckbriefe)?                                                                                                                                                                                |
 |  3 | Auswahlmöglichkeiten | Dialogoptionen stellen _branching plots_ zur Verfügung und lassen den Spieler zu einem gewissen Grad selbstbestimmt handeln. Sind derartige Entscheidungen vorhanden und unterscheidet sich der Dialog je nach getätigter Auswahl?                                                                                                                                                     |
