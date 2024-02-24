@@ -6,7 +6,7 @@ A FUDGE module for the easy development of interactive stories, visual novels an
 - [APIs](https://jirkadelloro.github.io/FUDGE_Story/Documentation/Reference/#fudge-story-reference)
 - [Pages-Link](https://larammue.github.io/VisualNovelWPM/Template/Template.html)
 - [Github Repository](https://github.com/LaraMMue/VisualNovelWPM)
-- [Konzept]()
+- [Konzept](https://github.com/LaraMMue/VisualNovelWPM/blob/main/Template/Konzept_Nexirium.pdf)
 
 
 ## Bewertungskriterien
